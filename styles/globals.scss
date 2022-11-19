@@ -1,17 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./fonts.scss";
 
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: #0e1216;
-  color: #f1ede9;
-  scroll-behavior: smooth;
-  font-family: "Neue Haas Display Pro";
-  line-height: 1.654;
+    background-color: #0e1216;
+    color: #f1ede9;
+    scroll-behavior: smooth;
+    font-family: "Neue Haas Display Pro";
+    line-height: 1.654;
+}
+
+.word,
+.line {
+    overflow: hidden;
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
+    transform-origin: bottom;
+}
+
+.show {
+    opacity: 100;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.transitioning {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(94, 94, 94);
+    perspective: 1800px;
+}
+
+[text-split] span.line {
+    display: inline-block !important;
 }
