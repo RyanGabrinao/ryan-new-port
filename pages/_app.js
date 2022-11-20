@@ -7,6 +7,7 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import Loader from "../src/components/Loader";
+import Cursor from "../src/components/Cursor";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,7 +38,12 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Loader setIsLoading={setIsLoading} isLoading={isLoading} />
+      {isLoading ? (
+        <Loader setIsLoading={setIsLoading} isLoading={isLoading} />
+      ) : (
+        <Cursor />
+      )}
+
       <Header />
       <LoaderContext.Provider
         value={{

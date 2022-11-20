@@ -11,7 +11,7 @@ function Hero({ title, subTitle, heroImage }) {
   const component = useRef(null);
   const { isLoading, setIsLoading } = useContext(LoaderContext);
   let tl = gsap.timeline({ paused: true });
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
       tl.to("#hero-image-overlay", {
         yPercent: -100,
@@ -36,6 +36,36 @@ function Hero({ title, subTitle, heroImage }) {
           },
           "<0.2"
         );
+
+      // gsap.to(".sub-title-container", {
+      //   yPercent: -150,
+      //   scrollTrigger: {
+      //     trigger: component.current,
+      //     start: "top top",
+      //     end: "bottom top",
+      //     scrub: 1,
+      //   },
+      // });
+
+      // gsap.to(".sub-title-container, .hero-title-container", {
+      //   yPercent: -150,
+      //   scrollTrigger: {
+      //     trigger: component.current,
+      //     start: "top top",
+      //     end: "bottom top",
+      //     scrub: 1,
+      //   },
+      // });
+
+      gsap.to("#hero-image", {
+        yPercent: 35,
+        scrollTrigger: {
+          trigger: component.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     }, component);
 
     if (isLoading) {
@@ -57,12 +87,12 @@ function Hero({ title, subTitle, heroImage }) {
         className="relative flex items-center justify-center h-full"
         id="hero-container"
       >
-        <h1 className="absolute text-heroName font-bold uppercase top-[23%] font-neuehaas overflow-hidden">
+        <h1 className="absolute text-heroName font-bold uppercase top-[23%] font-neuehaas overflow-hidden hero-title-container z-[2]">
           <span className="inline-block" id="hero-title">
             {title}
           </span>
         </h1>
-        <div className="absolute bottom-[23%] font-bold uppercase font-neuhaas text-heroSub flex tracking-wide overflow-hidden">
+        <div className="absolute bottom-[23%] font-bold uppercase font-neuhaas text-heroSub flex tracking-wide overflow-hidden sub-title-container z-[2]">
           <span className="inline-block" id="sub-title">
             <span className="inline-block mr-3 italic font-thin font-gambetta">
               {subTitle.first_word}
@@ -71,7 +101,7 @@ function Hero({ title, subTitle, heroImage }) {
           </span>
         </div>
         <div
-          className="relative w-[40%] aspect-[3/5] overflow-hidden bg-gray-500"
+          className="relative w-[40%] aspect-[9/16] overflow-hidden bg-gray-500"
           id="hero-image-container"
         >
           <Image
