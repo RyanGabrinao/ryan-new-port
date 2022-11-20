@@ -56,7 +56,7 @@ const Loader = ({ isLoading, setIsLoading }) => {
         });
     });
     return () => loadingAnim.revert();
-  }, [isLoading]);
+  }, [isLoading, setIsLoading]);
 
   return (
     <div
