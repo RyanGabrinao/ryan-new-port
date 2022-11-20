@@ -2,8 +2,6 @@ import Head from "next/head";
 import About from "../src/components/About";
 import Hero from "../src/components/Hero";
 import { sanityClient } from "../sanity";
-import { fetchSiteSettings } from "../utils/fetchSiteSettings";
-import { fetchProjects } from "../utils/fetchProjects";
 import Works from "../src/components/Works";
 
 export default function Home({ siteSettings, projects }) {
@@ -25,19 +23,6 @@ export default function Home({ siteSettings, projects }) {
     </main>
   );
 }
-
-// export const getStaticProps = async () => {
-//   const siteSettings = await fetchSiteSettings();
-//   const projects = await fetchProjects();
-
-//   return {
-//     props: {
-//       siteSettings,
-//       projects,
-//     },
-//     revalidate: 360,
-//   };
-// };
 
 export const getStaticProps = async () => {
   const query = `*[_type == "projects"]`;
