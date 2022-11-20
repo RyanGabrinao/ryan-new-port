@@ -10,10 +10,10 @@ const customEase = CustomEase.create(
 );
 
 const Loader = ({ isLoading, setIsLoading }) => {
-  const setLoadToFalse = () => {
-    setIsLoading(false);
-  };
   useEffect(() => {
+    const setLoadToFalse = () => {
+      setIsLoading(false);
+    };
     let loadingAnim = gsap.context(() => {
       let tl = gsap.timeline();
 
@@ -56,7 +56,7 @@ const Loader = ({ isLoading, setIsLoading }) => {
         });
     });
     return () => loadingAnim.revert();
-  }, []);
+  }, [isLoading]);
 
   return (
     <div
