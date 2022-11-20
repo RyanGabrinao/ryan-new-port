@@ -1,8 +1,11 @@
 import Head from "next/head";
 import About from "../src/components/About";
 import Hero from "../src/components/Hero";
+import { fetchSiteSettings } from "../utils/fetchSiteSettings";
+import { fetchProjects } from "../utils/fetchProjects";
+import Works from "../src/components/Works";
 
-export default function Home() {
+export default function Home({ siteSettings, projects }) {
   return (
     <main className="flex flex-col">
       <Head>
@@ -12,12 +15,25 @@ export default function Home() {
       </Head>
 
       {/* Hero Section */}
-      <Hero />
-
+      <Hero {...siteSettings} />
       {/* About Section */}
       <About />
       {/* Works Section */}
+      <Works projects={projects} />
       {/* Create Section */}
     </main>
   );
 }
+
+export const getStaticProps = async () => {
+  const siteSettings = await fetchSiteSettings();
+  const projects = await fetchProjects();
+
+  return {
+    props: {
+      siteSettings,
+      projects,
+    },
+    revalidate: 360,
+  };
+};

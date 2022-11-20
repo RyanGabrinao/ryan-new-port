@@ -1,11 +1,13 @@
 import { useRef, useEffect, useLayoutEffect, useContext } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Image from "next/image";
 import SplitType from "split-type";
 import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";
 import { LoaderContext } from "../../pages/_app";
+import { urlFor } from "../../sanity.js";
 
-function Hero() {
+function Hero({ title, subTitle, heroImage }) {
   const component = useRef(null);
   const { isLoading, setIsLoading } = useContext(LoaderContext);
   let tl = gsap.timeline({ paused: true });
@@ -57,30 +59,28 @@ function Hero() {
       >
         <h1 className="absolute text-heroName font-bold uppercase top-[23%] font-neuehaas overflow-hidden">
           <span className="inline-block" id="hero-title">
-            Title
+            {title}
           </span>
         </h1>
         <div className="absolute bottom-[23%] font-bold uppercase font-neuhaas text-heroSub flex tracking-wide overflow-hidden">
           <span className="inline-block" id="sub-title">
             <span className="inline-block mr-3 italic font-thin font-gambetta">
-              Subtitle1
+              {subTitle.first_word}
             </span>
-            Subtitle2
+            {subTitle.second_word}
           </span>
         </div>
         <div
-          className="relative w-[40%] aspect-[9/16] overflow-hidden bg-gray-500"
+          className="relative w-[40%] aspect-[3/5] overflow-hidden bg-gray-500"
           id="hero-image-container"
         >
-          {/* <Image
+          <Image
             src={urlFor(heroImage).url()}
             alt="Alt text for the picture"
             fill
-            priority
-            sizes=""
             className="object-cover scale-[1.6]"
             id="hero-image"
-          /> */}
+          />
           <div
             className="absolute top-0 left-0 w-full h-full bg-main-bg"
             id="hero-image-overlay"
