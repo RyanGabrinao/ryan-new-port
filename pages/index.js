@@ -1,6 +1,7 @@
 import Head from "next/head";
 import About from "../src/components/About";
 import Hero from "../src/components/Hero";
+import { sanityClient } from "../sanity";
 import { fetchSiteSettings } from "../utils/fetchSiteSettings";
 import { fetchProjects } from "../utils/fetchProjects";
 import Works from "../src/components/Works";
@@ -25,15 +26,38 @@ export default function Home({ siteSettings, projects }) {
   );
 }
 
+// export const getStaticProps = async () => {
+//   const siteSettings = await fetchSiteSettings();
+//   const projects = await fetchProjects();
+
+//   return {
+//     props: {
+//       siteSettings,
+//       projects,
+//     },
+//     revalidate: 360,
+//   };
+// };
+
 export const getStaticProps = async () => {
-  const siteSettings = await fetchSiteSettings();
-  const projects = await fetchProjects();
+  const query = `*[_type == "projects"]`;
+
+  const projects = await sanityClient.fetch(query);
+
+  const query2 = `*[_type == "siteSettings"][0]`;
+
+  const siteSettings = await sanityClient.fetch(query2);
+
+  if (!projects || !siteSettings) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      siteSettings,
       projects,
+      siteSettings,
     },
-    revalidate: 360,
   };
 };

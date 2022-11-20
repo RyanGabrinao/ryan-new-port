@@ -30,18 +30,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const query = `*[_type == "projects" && slug.current == $slug][0]{
-    _id,
-    title,
-    slug,
-    href,
-    mainImage,
-    desktopImage,
-    mobileImage,
-    galleryFullWidthMobile,
-    excerpt,
-    tags
-  }`;
+  const query = `*[_type == "projects" && slug.current == $slug][0]`;
 
   const query2 = `*[_type == "projects" && slug.current != $slug]`;
 
