@@ -6,7 +6,15 @@
 
 @layer components {
     .fixed-center {
-        @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+        @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+    }
+
+    .input__text {
+        @apply inline-block mb-4 text-step5 w-full uppercase font-medium bg-transparent border-rg-white border-b placeholder-neutral-800 placeholder-opacity-50
+    }
+
+    .option {
+        @apply text-step5
     }
 }
 
@@ -23,6 +31,21 @@ body {
     font-family: "Neue Haas Display Pro";
 }
 
+body::before {
+    content: "";
+    background-image: url("/fuzzy-fuzz.gif");
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 999999;
+    background-repeat: repeat;
+    pointer-events: none;
+    // background-size: cover;
+}
+
 body::-webkit-scrollbar {
     display: none;
 }
@@ -33,6 +56,21 @@ body {
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+}
+
+select option {
+    color: black;
+}
+
+select[value="default"] {
+    color: red !important;
+}
+
+#hero-title {
+    background-image: url('/giffy.webp');
+    background-size: cover;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .word,

@@ -1,8 +1,17 @@
 import React from "react";
 import { sanityClient } from "../../sanity";
+import { motion } from "framer-motion";
 
 function Project({ project }) {
-  return <div>Project: {project.title}</div>;
+  return (
+    <div>
+      Project:
+      <h3 className="font-medium text-step0">{project.title}</h3>
+      {/* <div className="">
+        <Image src={src} alt="props" fill />
+      </div> */}
+    </div>
+  );
 }
 
 export default Project;

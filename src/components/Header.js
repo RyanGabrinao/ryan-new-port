@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <header
-      className="absolute top-0 left-0 flex items-center justify-between w-full px-2 py-4 z-[5]"
+      className="absolute top-0 left-0 z-10 flex items-center justify-between w-full px-2 py-4"
       ref={headerRef}
     >
       <Link
@@ -21,7 +21,12 @@ function Header() {
           <Logo className="w-full fill-red-600" />
         </div>
       </Link>
-      <div className="font-migra text-step3">Home, About</div>
+      <div className="font-migra text-step3">
+        <Link href="/" scroll={false}>
+          Home
+        </Link>
+        , About
+      </div>
     </header>
   );
 }

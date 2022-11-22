@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";
 import { createScrollTrigger } from "../utility/gsap";
 import SplitType from "split-type";
+import { motion } from "framer-motion";
 
 function Works({ projects }) {
   const component = useRef();
@@ -22,17 +23,34 @@ function Works({ projects }) {
         stagger: { each: 0.2 },
         scrollTrigger: {
           trigger: ".interactable",
-          start: "top 70%",
+          start: "top 80%",
           toggleActions: "play none none reverse",
         },
       });
-      let tl = gsap.timeline();
+
+      gsap.from(".works-title", {
+        opacity: 0,
+        yPercent: 100,
+        duration: 0.7,
+        ease: "power4.inOut",
+        scrollTrigger: {
+          trigger: component.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
     }, component);
     return () => ctx.revert();
   }, []);
   return (
-    <section ref={component} className="h-[100vh]" id="works-section">
-      {/* <h2 className="text-step0 font-migra">Come check out my projects</h2> */}
+    <section
+      ref={component}
+      className="mb-[45vmax] relative z-10 flex flex-col items-center"
+      id="works-section"
+    >
+      <h2 className="font-bold tracking-tight text-step_4 works-title mb-[0.5em]">
+        Projects
+      </h2>
       {projects.map((project) => {
         return (
           <div key={project._id} className="block mb-[2rem]">
@@ -50,8 +68,9 @@ function Works({ projects }) {
 
 export default Works;
 
-const Project = ({ title, path, src }) => {
+const Project = ({ _id, title, path, src }) => {
   const [isHovered, setIsHovered] = useState();
+  console.log(_id);
   const handleOnEnter = () => {
     setIsHovered(true);
   };
@@ -69,11 +88,9 @@ const Project = ({ title, path, src }) => {
           onMouseLeave={handleOnLeave}
         >
           <div>
-            <h3 className="font-medium text-red-700 text-step_1 project-title">
-              {title}
-            </h3>
+            <h3 className="font-medium text-step0 project-title">{title}</h3>
             <h3
-              className={`absolute top-0 font-medium text-step_1 title-clone ${
+              className={`absolute top-0 font-medium text-step0 title-clone ${
                 isHovered && "clone-appear"
               }`}
               aria-hidden="true"

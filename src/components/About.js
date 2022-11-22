@@ -37,12 +37,12 @@ const About = () => {
 
   return (
     <section
-      className="flex flex-col gap-[80vh] leading-[1.1] mb-[60vmax]"
+      className="relative flex flex-col gap-[80vh] leading-[1.1] mb-[60vmax] z-10"
       id="about-section"
       ref={component}
     >
       <p
-        className="w-[70%] text-justify font-normal font-neuehaas text-step3 ml-[3vmin]"
+        className="w-[70%] text-justify font-normal font-neuehaas text-step3 ml-[3vmin] relative z-10"
         text-split=""
         letters-slide-down=""
       >
@@ -52,7 +52,7 @@ const About = () => {
         with both large and small businesses with different goals.
       </p>
       <p
-        className="w-[80%] ml-auto font-normal text-justify font-neuehaas text-step3 mr-[3vmin]"
+        className="w-[80%] ml-auto font-normal text-justify font-neuehaas text-step3 mr-[3vmin] relative z-10"
         text-split=""
         letters-slide-down=""
       >

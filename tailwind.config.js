@@ -25,6 +25,7 @@ module.exports = {
       colors: {
         "main-bg": "#0e1216",
         "rg-white": "#f1ede9",
+        "rg-orange": "#FF884B",
       },
       fontFamily: {
         neuehaas: ["Neue Haas Display Pro"],

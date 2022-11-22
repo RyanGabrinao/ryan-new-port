@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useEffect, useLayoutEffect, useContext } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -19,20 +21,31 @@ function Hero({
   const component = useRef(null);
   const { isLoading, setIsLoading } = useContext(LoaderContext);
   let tl = gsap.timeline({ paused: true });
+  // useIsomorphicLayoutEffect(() => {
+  //   gsap.set(".currently-title", { opacity: 1 });
+  // }, []);
+  // gsap.set(".currently-title", { opacity: 1 });
+  // useEffect(() => {
+  //   gsap.set(".currently-title", { opacity: 1 });
+  // }, []);
+
   useIsomorphicLayoutEffect(() => {
+    // gsap.set(".currently-title", { autoAlpha: 1 });
     let ctx = gsap.context(() => {
-      gsap.set(".currently-title", { opacity: 1 });
+      // gsap.set(".currently-title", { opacity: 1 });
+      // let tl = gsap.timeline({ paused: false });
+      gsap.set(".currently-title", { autoAlpha: 1 });
       tl.to(".hero-image-overlay", {
         yPercent: -100,
         ease: "power2.inOut",
-        duration: 0.9,
+        duration: 0.7,
       })
         .to(
           ".hero-image",
           {
             scale: 1.6,
             ease: "power2.inOut",
-            duration: 0.9,
+            duration: 0.7,
           },
           "<"
         )
@@ -40,7 +53,7 @@ function Hero({
           "#hero-title, #sub-title, .currently-title",
           {
             yPercent: -120,
-            duration: 1.4,
+            duration: 0.9,
             ease: "power3.inOut",
           },
           "<0.2"
@@ -75,25 +88,27 @@ function Hero({
           scrub: true,
         },
       });
-    }, component);
 
-    if (isLoading) {
-      tl.pause();
-    } else {
-      tl.play();
-    }
+      if (isLoading) {
+        tl.pause();
+        console.log("pause anim");
+      } else {
+        tl.play();
+        console.log("play anim");
+      }
+    }, component);
 
     return () => ctx.revert();
   }, [isLoading]);
 
   return (
     <section
-      className="h-screen min-h-[500px] mb-[60vmax] overflow-hidden"
+      className="h-screen min-h-[500px] mb-[40vmax] overflow-hidden z-10"
       id="hero-container"
       ref={component}
     >
       <div className="relative h-full pt-[5rem]" id="hero-container">
-        <div className="relative w-[45%] aspect-[3/4] overflow-hidden bg-gray-500 hero-image-container">
+        <div className="relative w-[45%] aspect-[3/4] overflow-hidden hero-image-container">
           <Image
             src={urlFor(heroImage).url()}
             alt="Alt text for the picture"
@@ -102,7 +117,7 @@ function Hero({
           />
           <div className="absolute top-0 left-0 w-full h-full bg-main-bg hero-image-overlay"></div>
         </div>
-        <div className="absolute bottom-[5%] right-0 w-[40%] aspect-[3/5] overflow-hidden bg-gray-500 hero-image-container">
+        <div className="absolute bottom-[5%] right-0 w-[40%] aspect-[3/5] overflow-hidden hero-image-container">
           <Image
             src={urlFor(heroImage2).url()}
             alt="Alt text for the picture"
@@ -112,12 +127,12 @@ function Hero({
           <div className="absolute top-0 left-0 w-full h-full bg-main-bg hero-image-overlay"></div>
         </div>
         <div className="absolute top-[50%] -translate-y-1/2">
-          <h1 className="overflow-hidden font-bold leading-[0.77] uppercase text-step_3 font-neuehaas hero-title-container">
+          <h1 className="overflow-hidden font-bold leading-[0.77] uppercase text-step_3 font-neuehaas hero-title-container tracking-tight">
             <span className="inline-block overflow-hidden" id="hero-title">
               {title}
             </span>
           </h1>
-          <h2 className="ml-[1.8rem] overflow-hidden leading-[1] font-bold tracking-wide uppercase font-neuhaas text-heroSub sub-title-container">
+          <h2 className="ml-[1.8rem] overflow-hidden leading-[1] font-bold uppercase font-neuhaas text-heroSub sub-title-container tracking-tighter">
             <span className="inline-block" id="sub-title">
               <span className="inline-block mr-3 italic font-thin font-gambetta">
                 {subTitle.first_word}
@@ -126,9 +141,16 @@ function Hero({
             </span>
           </h2>
         </div>
-        <div className="absolute top-[10%] right-1 max-w-[35%] text-right overflow-hidden">
+        <div
+          className="absolute top-[10%] right-1 max-w-[50%] text-right overflow-hidden"
+          id="currently-container-1"
+        >
           <Marquee gradient={false} speed={30} direction="right">
-            <h4 className="font-bold tracking-widest uppercase font-gambetta text-step4 leading-[1.1] mb-[0.6em] mr-2 currently-title opacity-0">
+            <h4
+              className={`font-bold tracking-widest uppercase font-gambetta text-step4 leading-[1.1] mb-[0.6em] currently-title ${
+                isLoading ? "opacity-0" : ""
+              }`}
+            >
               Currently Viewing
             </h4>
           </Marquee>
@@ -152,9 +174,16 @@ function Hero({
             })}
           </ol>
         </div>
-        <div className="absolute bottom-[5%] left-1 max-w-[35%]">
+        <div
+          className="absolute bottom-[5%] left-1 max-w-[50%]"
+          id="currently-container-2"
+        >
           <Marquee gradient={false} speed={30}>
-            <h4 className="font-bold tracking-widest uppercase font-gambetta text-step4 leading-[1.1] mb-[0.6em] mr-2 currently-title opacity-0">
+            <h4
+              className={`font-bold tracking-widest uppercase font-gambetta text-step4 leading-[1.1] mb-[0.6em] currently-title ${
+                isLoading ? "opacity-0" : ""
+              }`}
+            >
               Currently Listening
             </h4>
           </Marquee>

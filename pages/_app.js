@@ -1,5 +1,3 @@
-"use client";
-
 import "../styles/globals.scss";
 import { useState, useEffect, createContext } from "react";
 import Header from "../src/components/Header";
