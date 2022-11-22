@@ -142,7 +142,7 @@ function Hero({
                   <a
                     href={video.Link}
                     target="_blank"
-                    rel="noopener"
+                    rel="noreferrer"
                     className="inline-block w-[100%] truncate"
                   >
                     {++i + ". " + video.name}
@@ -168,7 +168,7 @@ function Hero({
                   <a
                     href={song.Link}
                     target="_blank"
-                    rel="noopener"
+                    rel="noreferrer"
                     className="inline-block w-[100%] truncate"
                   >
                     {++i + ". " + song.name}
