@@ -42,6 +42,25 @@ export default {
       },
     },
     {
+      name: "heroImage2",
+      title: "Hero Image 2",
+      type: "image",
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description: "Important for SEO and accessiblity.",
+          options: {
+            isHighlighted: true,
+          },
+        },
+      ],
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: "title",
       title: "Title",
       type: "string",
@@ -62,6 +81,20 @@ export default {
           type: "string",
         },
       ],
+    },
+    {
+      name: "currentlyListening",
+      title: "Currently Listening to:",
+      type: "array",
+      of: [{ type: "songs" }],
+      validation: (Rule) => Rule.length(5),
+    },
+    {
+      name: "currentlyWatching",
+      title: "Currently Watching:",
+      type: "array",
+      of: [{ type: "songs" }],
+      validation: (Rule) => Rule.length(5),
     },
   ],
 };
