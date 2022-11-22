@@ -18,10 +18,6 @@ const Cursor = () => {
       });
       setInteracting(interactable ? true : false);
 
-      interacting
-        ? (trailer.style.mixBlendMode = "normal")
-        : (trailer.style.mixBlendMode = "difference");
-
       setIsProjectTab(projectTab ? true : false);
     };
 

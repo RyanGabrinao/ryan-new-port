@@ -37,26 +37,6 @@ function Hero({ title, subTitle, heroImage }) {
           "<0.2"
         );
 
-      // gsap.to(".sub-title-container", {
-      //   yPercent: -150,
-      //   scrollTrigger: {
-      //     trigger: component.current,
-      //     start: "top top",
-      //     end: "bottom top",
-      //     scrub: 1,
-      //   },
-      // });
-
-      // gsap.to(".sub-title-container, .hero-title-container", {
-      //   yPercent: -150,
-      //   scrollTrigger: {
-      //     trigger: component.current,
-      //     start: "top top",
-      //     end: "bottom top",
-      //     scrub: 1,
-      //   },
-      // });
-
       gsap.to("#hero-image", {
         yPercent: 35,
         scrollTrigger: {
@@ -79,12 +59,12 @@ function Hero({ title, subTitle, heroImage }) {
 
   return (
     <section
-      className="h-screen min-h-[500px]"
+      className="h-screen min-h-[500px] mb-[60vmax]"
       id="hero-container"
       ref={component}
     >
       <div
-        className="relative flex items-center justify-center h-full"
+        className="relative flex flex-col items-center justify-center h-full"
         id="hero-container"
       >
         <h1 className="absolute text-heroName font-bold uppercase top-[23%] font-neuehaas overflow-hidden hero-title-container z-[2]">

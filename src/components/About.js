@@ -37,7 +37,7 @@ const About = () => {
 
   return (
     <section
-      className="flex flex-col gap-[80vh] leading-[1.1] z-30"
+      className="flex flex-col gap-[80vh] leading-[1.1] mb-[60vmax]"
       id="about-section"
       ref={component}
     >
