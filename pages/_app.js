@@ -11,9 +11,11 @@ import Cursor from "../src/components/Cursor";
 gsap.registerPlugin(ScrollTrigger, Flip);
 
 export const LoaderContext = createContext();
+export const FlipContext = createContext();
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [flipState, setFlipState] = useState();
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.7,
@@ -50,7 +52,9 @@ function MyApp({ Component, pageProps }) {
           setIsLoading,
         }}
       >
-        <Component {...pageProps} />
+        <FlipContext.Provider value={{ flipState, setFlipState }}>
+          <Component {...pageProps} />
+        </FlipContext.Provider>
       </LoaderContext.Provider>
     </>
   );
