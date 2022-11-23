@@ -54,7 +54,7 @@ function Project({ project }) {
     return () => ctx.revert();
   }, [flipState]);
   return (
-    <div ref={component} className="h-auto overflow-hidden">
+    <div ref={component} className="h-auto">
       Project:
       <h3 className="font-medium text-step0">{project.title}</h3>
       <div

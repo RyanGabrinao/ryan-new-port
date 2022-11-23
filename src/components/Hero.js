@@ -157,7 +157,7 @@ function Hero({
               return (
                 <li
                   key={video._key}
-                  className="overflow-hidden font-thin tracking-wide truncate font-neuehaas hover:text-orange-400 text-step6"
+                  className="ml-auto overflow-hidden font-thin tracking-wide truncate w-fit font-neuehaas hover:text-orange-400 text-step6"
                 >
                   <a
                     href={video.Link}
@@ -190,7 +190,7 @@ function Hero({
               return (
                 <li
                   key={song._key}
-                  className="overflow-hidden font-thin tracking-wide font-neuehaas hover:text-purple-400 text-step6"
+                  className="overflow-hidden font-thin tracking-wide w-fit font-neuehaas hover:text-purple-400 text-step6"
                 >
                   <a
                     href={song.Link}
