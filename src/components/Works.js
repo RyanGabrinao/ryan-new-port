@@ -21,7 +21,7 @@ function Works({ projects }) {
     // if (!flipState) return;
     setFlipState(state);
     // console.log(Flip.getState(`.project-image`));
-  }, [setFlipState]);
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
