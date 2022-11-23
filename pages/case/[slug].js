@@ -54,8 +54,8 @@ function Project({ project }) {
     return () => ctx.revert();
   }, [flipState]);
   return (
-    <div ref={component} className="h-auto">
-      Project:
+    <main ref={component} className="h-auto">
+      <section id="project-hero-section"></section>
       <h3 className="font-medium text-step0">{project.title}</h3>
       <div
         className="fixed w-full aspect-video"
@@ -103,7 +103,7 @@ function Project({ project }) {
         Nulla finibus erat lacus, sit amet cursus nibh rhoncus non. Proin eu
         congue turpis, in lacinia erat. Suspendisse sed congue nisi.
       </p>
-    </div>
+    </main>
   );
 }
 
