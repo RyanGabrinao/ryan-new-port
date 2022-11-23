@@ -57,19 +57,21 @@ function MyApp({ Component, pageProps }) {
     }
 
     requestAnimationFrame(raf);
-    const stopScroll = () => {};
+    const stopScroll = () => {
+      lenis.stop();
+    };
 
     const startScroll = () => {
       lenis.start();
     };
 
-    route.events.on("routeChangeStart", stopScroll);
-    route.events.on("routeChangeComplete", startScroll);
+    // route.events.on("routeChangeStart", stopScroll);
+    // route.events.on("routeChangeComplete", startScroll);
 
     return () => {
       lenis.destroy();
-      route.events.off("routeChangeStart", stopScroll);
-      route.events.off("routeChangeComplete", startScroll);
+      // route.events.off("routeChangeStart", stopScroll);
+      // route.events.off("routeChangeComplete", startScroll);
     };
   }, [route.events]);
 

@@ -18,10 +18,10 @@ function Works({ projects }) {
   const { flipState, setFlipState } = useContext(FlipContext);
   useEffect(() => {
     const state = Flip.getState(`.project-image`);
-    // if (flipState) return;
+    // if (!flipState) return;
     setFlipState(state);
     // console.log(Flip.getState(`.project-image`));
-  }, []);
+  }, [setFlipState]);
 
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -69,6 +69,7 @@ function Works({ projects }) {
               {...project}
               path={`/case/${project.slug.current}`}
               src={urlFor(project.mainImage).url()}
+              setFlipState={setFlipState}
             />
           </div>
         );
@@ -79,7 +80,7 @@ function Works({ projects }) {
 
 export default Works;
 
-const Project = ({ _id, title, path, src }) => {
+const Project = ({ _id, title, path, src, setFlipState }) => {
   const [isHovered, setIsHovered] = useState();
   const handleOnEnter = () => {
     setIsHovered(true);
@@ -87,10 +88,6 @@ const Project = ({ _id, title, path, src }) => {
   const handleOnLeave = () => {
     setIsHovered(false);
   };
-
-  // const handleFlip = () => {
-  //   const state = Flip.getState(".project-image")
-  // }
 
   return (
     <>

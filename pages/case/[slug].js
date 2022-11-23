@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { sanityClient } from "../../sanity";
 import { motion } from "framer-motion";
@@ -14,8 +14,25 @@ gsap.registerPlugin(Flip);
 function Project({ project }) {
   const component = useRef();
   const { flipState, setFlipState } = useContext(FlipContext);
+  // useIsomorphicLayoutEffect(() => {
+  //   if (!flipState) return;
+  //   console.log(flipState);
+  //   const flip = Flip.from(flipState, {
+  //     duration: 0.6,
+  //     // fade: true,
+  //     scale: true,
+  //     absolute: true,
+  //     ease: "power4.inOut",
+  //     targets: projImageRef.current,
+  //   });
+
+  //   return () => {
+  //     flip.kill();
+  //   };
+  // }, [flipState]);
   useIsomorphicLayoutEffect(() => {
     if (!flipState) return;
+    console.log(flipState);
     let ctx = gsap.context(() => {
       gsap.set("#main-project-image", {
         position: "relative",
@@ -24,8 +41,8 @@ function Project({ project }) {
       });
       Flip.from(flipState, {
         targets: "#main-project-image",
-        // scale: true,
-        absolute: true,
+        scale: true,
+        // absolute: true,
         duration: 1.4,
         // delay: 0.5,
         ease: "power4.inOut",
@@ -37,11 +54,11 @@ function Project({ project }) {
     return () => ctx.revert();
   }, [flipState]);
   return (
-    <div ref={component} className="h-[200vh] overflow-hidden">
+    <div ref={component} className="h-auto overflow-hidden">
       Project:
       <h3 className="font-medium text-step0">{project.title}</h3>
       <div
-        className="absolute w-full aspect-video"
+        className="fixed w-full aspect-video"
         id="main-project-image"
         data-flip-id={project._id}
       >
