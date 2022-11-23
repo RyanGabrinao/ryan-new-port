@@ -64,6 +64,45 @@ function Project({ project }) {
       >
         <Image src={urlFor(project.mainImage).url()} alt="props" fill />
       </div>
+      <p className="text-step4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+        venenatis metus ut nulla sollicitudin laoreet. Duis lacinia est in lorem
+        dictum cursus. Nunc a scelerisque quam, et malesuada turpis. Nunc porta
+        velit at elementum vulputate. Proin augue ex, scelerisque vitae nisl at,
+        dapibus aliquam urna. Maecenas id congue lacus. Suspendisse blandit,
+        tortor ut iaculis aliquet, eros quam mollis sapien, in dignissim felis
+        justo a eros. Nunc vestibulum ligula eget nulla tempor, non pellentesque
+        ante vehicula. Nullam vehicula lorem neque, quis pharetra nunc rhoncus
+        nec. Duis sollicitudin magna id ante vehicula suscipit quis sed mi.
+        Aenean pellentesque augue eu metus dignissim accumsan. Morbi ac purus
+        tincidunt, porttitor libero nec, efficitur mi. Maecenas nec cursus
+        purus. Class aptent taciti sociosqu ad litora torquent per conubia
+        nostra, per inceptos himenaeos. Praesent volutpat, libero et facilisis
+        ultrices, quam ligula vestibulum eros, at varius ipsum risus vel velit.
+        Vivamus mattis risus et sem maximus feugiat. Aliquam eget consequat
+        mauris. Aenean sit amet sodales ante. Nunc dignissim felis at massa
+        facilisis suscipit viverra vel odio. Fusce erat purus, scelerisque eu
+        metus nec, iaculis blandit ante. Nulla vitae tellus imperdiet, blandit
+        lacus mollis, consectetur lectus. Duis rutrum eros scelerisque enim
+        aliquet fermentum. Aenean vel augue sed neque bibendum lobortis.
+        Curabitur pellentesque, elit vel accumsan sollicitudin, enim arcu
+        consequat odio, at vehicula purus neque at nulla. Pellentesque vel eros
+        accumsan, consequat felis at, posuere sem. Praesent consectetur a eros
+        eget ultricies. Fusce luctus lectus dui, efficitur dictum mauris aliquam
+        porta. Pellentesque vitae magna ac felis pretium tincidunt. Ut vel felis
+        vel lectus eleifend aliquet et tempor sem. Aenean quis mollis nibh.
+        Integer nunc mauris, hendrerit at arcu dignissim, pulvinar pharetra
+        nisl. Praesent metus eros, varius eget rutrum sit amet, consectetur eget
+        nisi. Aliquam interdum, nisi ut faucibus blandit, tortor nunc lacinia
+        nunc, nec ultricies turpis sapien nec mauris. Etiam imperdiet ipsum
+        ultrices condimentum cursus. Pellentesque sed venenatis justo, nec
+        congue quam. Pellentesque sollicitudin erat eget urna consequat, ut
+        commodo erat mollis. Mauris molestie commodo lacinia. Fusce pharetra
+        nulla ex. Cras nec magna id velit laoreet mattis nec vitae mauris. Duis
+        sit amet sapien id sapien dapibus euismod tincidunt hendrerit tortor.
+        Nulla finibus erat lacus, sit amet cursus nibh rhoncus non. Proin eu
+        congue turpis, in lacinia erat. Suspendisse sed congue nisi.
+      </p>
     </div>
   );
 }

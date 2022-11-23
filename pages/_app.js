@@ -40,12 +40,12 @@ function MyApp({ Component, pageProps }) {
   const route = useRouter();
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
       direction: "vertical", // vertical, horizontal
       gestureDirection: "vertical", // vertical, horizontal, both
       smooth: true,
-      mouseMultiplier: 1,
+      mouseMultiplier: 0.7,
       smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
@@ -63,6 +63,7 @@ function MyApp({ Component, pageProps }) {
 
     const startScroll = () => {
       lenis.start();
+      lenis.scrollTo(0, { immediate: true });
     };
 
     route.events.on("routeChangeStart", stopScroll);
