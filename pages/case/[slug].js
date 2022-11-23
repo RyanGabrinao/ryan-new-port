@@ -22,6 +22,7 @@ function Project({ project }) {
         scale: true,
         absolute: true,
         duration: 1.4,
+        delay: 0.5,
         ease: "power4.inOut",
       });
     }, component);

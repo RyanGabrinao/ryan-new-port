@@ -94,7 +94,7 @@ const Project = ({ _id, title, path, src }) => {
 
   return (
     <>
-      <Link href={path} className="block w-fit">
+      <Link href={path} scroll={false} className="block w-fit">
         <div
           className={`relative inline-block overflow-hidden interactable ${
             isHovered && "z-10"
