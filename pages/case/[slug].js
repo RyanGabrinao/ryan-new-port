@@ -9,26 +9,29 @@ import { useIsomorphicLayoutEffect } from "../../src/hooks/useIsoEffect";
 import { useContext } from "react";
 import { FlipContext } from "../../pages/_app";
 import { Flip } from "gsap/dist/Flip";
+gsap.registerPlugin(Flip);
 
 function Project({ project }) {
   const component = useRef();
   const { flipState, setFlipState } = useContext(FlipContext);
   useIsomorphicLayoutEffect(() => {
-    const newState = Flip.getState("#main-project-image");
-    // let ctx = gsap.context(() => {
+    if (!flipState) return;
+    let ctx = gsap.context(() => {
+      Flip.from(flipState, {
+        targets: "#main-project-image",
+        scale: true,
+        absolute: true,
+        duration: 1.4,
+        ease: "power4.inOut",
+      });
+    }, component);
 
-    // }, component);
-    Flip.from(flipState, {
-      targets: "#main-project-image",
-      scale: true,
-      absolute: true,
-      duration: 1.4,
-      ease: "power4.inOut",
-    });
-    console.log(flipState);
-  }, []);
+    // console.log(flipState);
+
+    return () => ctx.revert();
+  }, [flipState]);
   return (
-    <div ref={component} className="h-[200vh]">
+    <div ref={component} className="h-screen">
       Project:
       <h3 className="font-medium text-step0">{project.title}</h3>
       <div

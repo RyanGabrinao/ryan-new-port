@@ -18,6 +18,7 @@ function Works({ projects }) {
   const { flipState, setFlipState } = useContext(FlipContext);
   useEffect(() => {
     const state = Flip.getState(`.project-image`);
+    if (flipState) return;
     setFlipState(state);
     // console.log(Flip.getState(`.project-image`));
   }, []);
