@@ -95,7 +95,7 @@ const Create = () => {
         id="create-section-content-container"
       >
         <h2 className="font-bold leading-tight text-step_4 font-neuehaas">
-          Let's Ride
+          Let&apos;s Ride
         </h2>
         <p className="mt-12 mb-4 font-normal text-step6">
           Fill the form below for an inquiry:

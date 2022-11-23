@@ -3,11 +3,12 @@ import { useState, useEffect, createContext } from "react";
 import Header from "../src/components/Header";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { Flip } from "gsap/dist/Flip";
 import Lenis from "@studio-freight/lenis";
 import Loader from "../src/components/Loader";
 import Cursor from "../src/components/Cursor";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Flip);
 
 export const LoaderContext = createContext();
 

@@ -1,15 +1,26 @@
-import React from "react";
+import { useRef } from "react";
+import Image from "next/image";
 import { sanityClient } from "../../sanity";
 import { motion } from "framer-motion";
+import { urlFor } from "../../sanity";
+import { gsap } from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useIsomorphicLayoutEffect } from "../../src/hooks/useIsoEffect";
 
 function Project({ project }) {
+  const component = useRef();
+  // useIsomorphicLayoutEffect(() => {
+  //   let ctx = gsap.context(() => {
+
+  //   }, component);
+  // }, []);
   return (
-    <div>
+    <div ref={component} className="h-[200vh]">
       Project:
       <h3 className="font-medium text-step0">{project.title}</h3>
-      {/* <div className="">
-        <Image src={src} alt="props" fill />
-      </div> */}
+      <div className="absolute aspect-video" id="main-project-image">
+        <Image src={urlFor(project.mainImage).url()} alt="props" fill />
+      </div>
     </div>
   );
 }

@@ -70,7 +70,6 @@ export default Works;
 
 const Project = ({ _id, title, path, src }) => {
   const [isHovered, setIsHovered] = useState();
-  console.log(_id);
   const handleOnEnter = () => {
     setIsHovered(true);
   };
