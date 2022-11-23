@@ -19,20 +19,20 @@ function Project({ project }) {
     let ctx = gsap.context(() => {
       Flip.from(flipState, {
         targets: "#main-project-image",
-        scale: true,
+        // scale: true,
         absolute: true,
         duration: 1.4,
-        delay: 0.5,
+        // delay: 0.5,
         ease: "power4.inOut",
       });
     }, component);
 
-    // console.log(flipState);
+    console.log(flipState);
 
     return () => ctx.revert();
   }, [flipState]);
   return (
-    <div ref={component} className="h-screen">
+    <div ref={component} className="h-[200vh] overflow-hidden">
       Project:
       <h3 className="font-medium text-step0">{project.title}</h3>
       <div

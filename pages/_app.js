@@ -57,9 +57,7 @@ function MyApp({ Component, pageProps }) {
     }
 
     requestAnimationFrame(raf);
-    const stopScroll = () => {
-      lenis.stop();
-    };
+    const stopScroll = () => {};
 
     const startScroll = () => {
       lenis.start();
