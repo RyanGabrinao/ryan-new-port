@@ -8,9 +8,19 @@ import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";
 import { createScrollTrigger } from "../utility/gsap";
 import SplitType from "split-type";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { FlipContext } from "../../pages/_app";
+import { Flip } from "gsap/dist/Flip";
+import { useEffect } from "react";
 
 function Works({ projects }) {
   const component = useRef();
+  const { flipState, setFlipState } = useContext(FlipContext);
+  useEffect(() => {
+    const state = Flip.getState(`.project-image`);
+    setFlipState(state);
+    // console.log(Flip.getState(`.project-image`));
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -76,6 +86,11 @@ const Project = ({ _id, title, path, src }) => {
   const handleOnLeave = () => {
     setIsHovered(false);
   };
+
+  // const handleFlip = () => {
+  //   const state = Flip.getState(".project-image")
+  // }
+
   return (
     <>
       <Link href={path} className="block w-fit">
@@ -100,9 +115,10 @@ const Project = ({ _id, title, path, src }) => {
         </div>
       </Link>
       <div
-        className={`pointer-events-none project-image overflow-hidden rounded-xl w-[80%] mx-auto aspect-video fixed transition-all duration-200 fixed-center ease-[cubic-bezier(0.77,0,0.175,1)] ${
+        className={`pointer-events-none project-image image-${_id} overflow-hidden w-[80%] mx-auto aspect-video fixed transition-all duration-200 fixed-center ease-[cubic-bezier(0.77,0,0.175,1)] ${
           isHovered ? "opacity-1 z-[9]" : "opacity-0"
         }`}
+        data-flip-id={_id}
       >
         <Image src={src} alt="props" fill />
       </div>

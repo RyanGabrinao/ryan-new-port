@@ -6,19 +6,36 @@ import { urlFor } from "../../sanity";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useIsomorphicLayoutEffect } from "../../src/hooks/useIsoEffect";
+import { useContext } from "react";
+import { FlipContext } from "../../pages/_app";
+import { Flip } from "gsap/dist/Flip";
 
 function Project({ project }) {
   const component = useRef();
-  // useIsomorphicLayoutEffect(() => {
-  //   let ctx = gsap.context(() => {
+  const { flipState, setFlipState } = useContext(FlipContext);
+  useIsomorphicLayoutEffect(() => {
+    const newState = Flip.getState("#main-project-image");
+    // let ctx = gsap.context(() => {
 
-  //   }, component);
-  // }, []);
+    // }, component);
+    Flip.from(flipState, {
+      targets: "#main-project-image",
+      scale: true,
+      absolute: true,
+      duration: 1.4,
+      ease: "power4.inOut",
+    });
+    console.log(flipState);
+  }, []);
   return (
     <div ref={component} className="h-[200vh]">
       Project:
       <h3 className="font-medium text-step0">{project.title}</h3>
-      <div className="absolute aspect-video" id="main-project-image">
+      <div
+        className="absolute w-full aspect-video"
+        id="main-project-image"
+        data-flip-id={project._id}
+      >
         <Image src={urlFor(project.mainImage).url()} alt="props" fill />
       </div>
     </div>
