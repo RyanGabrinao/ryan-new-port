@@ -17,6 +17,11 @@ function Project({ project }) {
   useIsomorphicLayoutEffect(() => {
     if (!flipState) return;
     let ctx = gsap.context(() => {
+      gsap.set("#main-project-image", {
+        position: "relative",
+        inset: "0",
+        zIndex: "-1",
+      });
       Flip.from(flipState, {
         targets: "#main-project-image",
         // scale: true,
