@@ -14,22 +14,6 @@ gsap.registerPlugin(Flip);
 function Project({ project }) {
   const component = useRef();
   const { flipState, setFlipState } = useContext(FlipContext);
-  // useIsomorphicLayoutEffect(() => {
-  //   if (!flipState) return;
-  //   console.log(flipState);
-  //   const flip = Flip.from(flipState, {
-  //     duration: 0.6,
-  //     // fade: true,
-  //     scale: true,
-  //     absolute: true,
-  //     ease: "power4.inOut",
-  //     targets: projImageRef.current,
-  //   });
-
-  //   return () => {
-  //     flip.kill();
-  //   };
-  // }, [flipState]);
   useIsomorphicLayoutEffect(() => {
     if (!flipState) return;
     console.log(flipState);

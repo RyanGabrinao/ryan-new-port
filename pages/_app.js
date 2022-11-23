@@ -1,5 +1,5 @@
 import "../styles/globals.scss";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, useCallback, createContext } from "react";
 import Header from "../src/components/Header";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -13,31 +13,13 @@ gsap.registerPlugin(ScrollTrigger, Flip);
 
 export const LoaderContext = createContext();
 export const FlipContext = createContext();
-// if (typeof window !== "undefined") {
-//   const lenis = new Lenis({
-//     duration: 1.7,
-//     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-//     direction: "vertical", // vertical, horizontal
-//     gestureDirection: "vertical", // vertical, horizontal, both
-//     smooth: true,
-//     mouseMultiplier: 1,
-//     smoothTouch: false,
-//     touchMultiplier: 2,
-//     infinite: false,
-//   });
-
-//   function raf(time) {
-//     lenis.raf(time);
-//     requestAnimationFrame(raf);
-//   }
-
-//   requestAnimationFrame(raf);
-// }
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [flipState, setFlipState] = useState();
   const route = useRouter();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 0.9,
@@ -75,14 +57,6 @@ function MyApp({ Component, pageProps }) {
       route.events.off("routeChangeComplete", startScroll);
     };
   }, [route.events]);
-
-  // useEffect(() => {
-  //   const pageChange = () => {
-  //     setRoutingPageOffset(window.scrollY);
-  //   };
-
-  //   route.events.on("routeChangeStart", lenis);
-  // }, [route.events]);
 
   return (
     <>
