@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }) {
         }}
       >
         <FlipContext.Provider value={{ flipState, setFlipState }}>
-          <Component {...pageProps} />
+          <Component {...pageProps} key={route.asPath} />
         </FlipContext.Provider>
       </LoaderContext.Provider>
     </>

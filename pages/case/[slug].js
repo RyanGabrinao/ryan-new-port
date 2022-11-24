@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { sanityClient } from "../../sanity";
 import { motion } from "framer-motion";
@@ -7,47 +7,76 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useIsomorphicLayoutEffect } from "../../src/hooks/useIsoEffect";
 import { useContext } from "react";
-import { FlipContext } from "../../pages/_app";
+import { FlipContext, LoaderContext } from "../../pages/_app";
 import { Flip } from "gsap/dist/Flip";
+import SplitType from "split-type";
+import { useLayoutEffect } from "react";
 gsap.registerPlugin(Flip);
 
 function Project({ project }) {
   const component = useRef();
   const { flipState, setFlipState } = useContext(FlipContext);
+  const { isLoading } = useContext(LoaderContext);
+  let titletl = gsap.timeline({ paused: true });
+  const playAnim = () => titletl.play();
+  useIsomorphicLayoutEffect(() => {
+    let text = SplitType.create("[text-split]", {
+      types: "words, chars, lines",
+      tagName: "span",
+    });
+
+    let ctx = gsap.context(() => {
+      titletl
+        .to("#project-title .word", { opacity: 1 })
+        .from("#project-title .word", {
+          yPercent: -110,
+          ease: "power2.inOut",
+          duration: 0.7,
+          stagger: { amount: 0.15 },
+        });
+    }, component);
+
+    if (!(flipState && isLoading)) titletl.play();
+
+    return () => ctx.revert();
+  }, [isLoading]);
   useIsomorphicLayoutEffect(() => {
     if (!flipState) return;
-    console.log(flipState);
     let ctx = gsap.context(() => {
-      gsap.set("#main-project-image", {
-        position: "relative",
-        inset: "0",
-        zIndex: "-1",
-      });
       Flip.from(flipState, {
         targets: "#main-project-image",
         scale: true,
         // absolute: true,
         duration: 1.4,
-        // delay: 0.5,
         ease: "power4.inOut",
+        onComplete: playAnim,
       });
     }, component);
-
-    console.log(flipState);
 
     return () => ctx.revert();
   }, [flipState]);
   return (
-    <main ref={component} className="h-auto">
-      <section id="project-hero-section"></section>
-      <h3 className="font-medium text-step0">{project.title}</h3>
-      <div
-        className="fixed w-full aspect-video"
-        id="main-project-image"
-        data-flip-id={project._id}
+    <main ref={component} className="overflow-x-hidden">
+      <section
+        id="project-hero-section"
+        className="relative flex flex-col justify-end h-[80vh] break-words whitespace-normal"
       >
-        <Image src={urlFor(project.mainImage).url()} alt="props" fill />
-      </div>
+        <h3
+          className="font-semibold leading-[0.8] text-step_5"
+          id="project-title"
+          text-split=""
+        >
+          {project.title}
+        </h3>
+        <div
+          className="relative w-full aspect-video"
+          id="main-project-image"
+          data-flip-id={project._id}
+        >
+          <Image src={urlFor(project.mainImage).url()} alt="props" fill />
+        </div>
+      </section>
+
       <p className="text-step4">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
         venenatis metus ut nulla sollicitudin laoreet. Duis lacinia est in lorem

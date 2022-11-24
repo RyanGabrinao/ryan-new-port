@@ -28,26 +28,6 @@ export default function Home({ siteSettings, projects }) {
     return () => tl.revert();
   }, []);
 
-  // useIsomorphicLayoutEffect(() => {
-  //   let ctx = gsap.context(() => {
-  //     ScrollTrigger.batch(".tile", {
-  //       onEnter: (batch) =>
-  //         gsap.to(batch, {
-  //           rotateY: 90,
-  //           stagger: { each: 0.2 },
-  //           scrollTrigger: {
-  //             trigger: "#tile-container",
-  //             start: "top 70%",
-  //             end: "bottom bottom",
-  //             scrub: true,
-  //           },
-  //         }),
-  //     });
-  //   }, mainComponent);
-
-  //   return () => ctx.revert();
-  // }, []);
-
   return (
     <main className="flex flex-col" ref={mainComponent}>
       <Head>
