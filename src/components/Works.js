@@ -16,11 +16,10 @@ import { useEffect } from "react";
 function Works({ projects }) {
   const component = useRef();
   const { flipState, setFlipState } = useContext(FlipContext);
+
   useEffect(() => {
     const state = Flip.getState(`.project-image`);
-    // if (!flipState) return;
     setFlipState(state);
-    // console.log(Flip.getState(`.project-image`));
   }, []);
 
   useIsomorphicLayoutEffect(() => {
@@ -113,12 +112,12 @@ const Project = ({ _id, title, path, src, setFlipState }) => {
         </div>
       </Link>
       <div
-        className={`pointer-events-none project-image image-${_id} overflow-hidden w-[80%] mx-auto aspect-video fixed transition-all duration-200 fixed-center ease-[cubic-bezier(0.77,0,0.175,1)] ${
+        className={`pointer-events-none project-image image-${_id} overflow-hidden w-[30%] mx-auto aspect-square fixed transition-all duration-200 fixed-center ease-[cubic-bezier(0.77,0,0.175,1)] ${
           isHovered ? "opacity-1 z-[9]" : "opacity-0"
         }`}
         data-flip-id={_id}
       >
-        <Image src={src} alt="props" fill />
+        <Image src={src} alt="props" fill className="object-cover" />
       </div>
       <div
         className={`fixed w-full h-screen top-0 left-0 pointer-events-none z-[8] transition-opacity duration-200 bg-main-bg ${

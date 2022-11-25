@@ -110,26 +110,6 @@ export default {
       },
     },
     {
-      name: "mobileImage",
-      title: "Mobile image mock",
-      type: "image",
-      group: "mock-images",
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative text",
-          description: "Important for SEO and accessiblity.",
-          options: {
-            isHighlighted: true,
-          },
-        },
-      ],
-      options: {
-        hotspot: true,
-      },
-    },
-    {
       name: "galleryFullWidthDesktop",
       title: "Gallery - Wide Image (Desktop)",
       type: "image",
@@ -163,11 +143,6 @@ export default {
           options: {
             isHighlighted: true,
           },
-        },
-        {
-          title: "Scroll Trigger",
-          name: "scrollable",
-          type: "boolean",
         },
       ],
       options: {

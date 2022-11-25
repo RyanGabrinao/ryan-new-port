@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Lenis from "@studio-freight/lenis";
 import Loader from "../src/components/Loader";
 import Cursor from "../src/components/Cursor";
+import { Desktop } from "../utils/mediaQueries";
 
 gsap.registerPlugin(ScrollTrigger, Flip);
 
@@ -63,7 +64,9 @@ function MyApp({ Component, pageProps }) {
       {isLoading ? (
         <Loader setIsLoading={setIsLoading} isLoading={isLoading} />
       ) : (
-        <Cursor />
+        <Desktop>
+          <Cursor />
+        </Desktop>
       )}
 
       <Header />

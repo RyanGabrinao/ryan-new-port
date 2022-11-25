@@ -53,7 +53,7 @@ const Create = () => {
               trigger: mainComponent.current,
               start: "top 50%",
               end: "top top+=100",
-              scrub: true,
+              scrub: 1,
             },
           }),
       });

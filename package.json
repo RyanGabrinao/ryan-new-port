@@ -27,6 +27,7 @@
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.6.0",
     "react-parallax-mouse": "^2.0.1",
+    "react-responsive": "^9.0.0",
     "split-type": "^0.3.3",
     "styled-components": "^5.3.6"
   },
