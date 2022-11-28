@@ -7,15 +7,22 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";
 import { createScrollTrigger } from "../utility/gsap";
 import SplitType from "split-type";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useContext } from "react";
 import { FlipContext } from "../../pages/_app";
 import { Flip } from "gsap/dist/Flip";
 import { useEffect } from "react";
+import { Transition, CSSTransition } from "react-transition-group";
+import { useRouter } from "next/router";
 
-function Works({ projects }) {
+function Works({
+  projects,
+  setFlipState,
+  isTransitioning,
+  setIsTransitioning,
+}) {
   const component = useRef();
-  const { flipState, setFlipState } = useContext(FlipContext);
+  const router = useRouter();
 
   useEffect(() => {
     const state = Flip.getState(`.project-image`);
@@ -61,6 +68,7 @@ function Works({ projects }) {
       <h2 className="font-bold tracking-tight text-step_4 works-title mb-[0.5em]">
         Projects
       </h2>
+
       {projects.map((project) => {
         return (
           <div key={project._id} className="block mb-[2rem]">

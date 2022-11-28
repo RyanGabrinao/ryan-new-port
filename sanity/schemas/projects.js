@@ -20,6 +20,18 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "client",
+      title: "Client",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "year",
+      title: "Year",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -49,6 +61,15 @@ export default {
       name: "introduction",
       title: "Introduction",
       type: "text",
+    },
+    {
+      title: "Tools",
+      name: "tools",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
     },
     {
       name: "mainImage",

@@ -76,15 +76,16 @@ select[value="default"] {
     color: red !important;
 }
 
-#hero-title {
-    background-image: url('/giffy.webp');
-    background-size: cover;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+// #hero-title {
+//     background-image: url('/giffy.webp');
+//     background-size: cover;
+//     background-clip: text;
+//     -webkit-text-fill-color: transparent;
+// }
 
 .word,
-.line {
+.line,
+.char {
     overflow: hidden;
     padding-bottom: 0.1em;
     margin-bottom: -0.1em;

@@ -10,17 +10,36 @@ import Link from "next/link";
 import ProjectHero from "../../src/components/ProjectPageComponents/ProjectHero";
 import ProjectBody from "../../src/components/ProjectPageComponents/ProjectBody";
 import ProjectLinks from "../../src/components/ProjectPageComponents/ProjectLinks";
+import PageTransition from "../../src/components/PageTransition";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useRouter } from "next/router";
+import styled from "styled-components";
+import { AnimatePresence, motion } from "framer-motion";
 
-function Project({ project, otherProjects }) {
-  const component = useRef();
-  const { flipState, setFlipState } = useContext(FlipContext);
-
+function Project({
+  project,
+  otherProjects,
+  flipState,
+  setFlipState,
+  isTransitioning,
+  setIsTransitioning,
+}) {
   return (
-    <main ref={component} className="overflow-x-hidden">
-      <ProjectHero project={project} flipState={flipState} />
-      <ProjectBody project={project} />
-      <ProjectLinks projects={otherProjects} setFlipState={setFlipState} />
-    </main>
+    <AnimatePresence>
+      {!isTransitioning && (
+        <motion.main
+          key={project._id}
+          initial={{ opacity: !flipState ? 0 : 1 }}
+          animate={{ opacity: 1 }}
+          className="overflow-x-hidden"
+          exit={{ opacity: 0 }}
+        >
+          <ProjectHero project={project} flipState={flipState} />
+          <ProjectBody project={project} />
+          <ProjectLinks projects={otherProjects} setFlipState={setFlipState} />
+        </motion.main>
+      )}
+    </AnimatePresence>
   );
 }
 

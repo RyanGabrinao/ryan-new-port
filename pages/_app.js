@@ -9,11 +9,12 @@ import Lenis from "@studio-freight/lenis";
 import Loader from "../src/components/Loader";
 import Cursor from "../src/components/Cursor";
 import { Desktop } from "../utils/mediaQueries";
+import { AnimatePresence } from "framer-motion";
+import PageTransition from "../src/components/PageTransition";
 
 gsap.registerPlugin(ScrollTrigger, Flip);
 
 export const LoaderContext = createContext();
-export const FlipContext = createContext();
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,12 +24,12 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.9,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
       direction: "vertical", // vertical, horizontal
       gestureDirection: "vertical", // vertical, horizontal, both
       smooth: true,
-      mouseMultiplier: 0.7,
+      mouseMultiplier: 1,
       smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
@@ -42,11 +43,13 @@ function MyApp({ Component, pageProps }) {
     requestAnimationFrame(raf);
     const stopScroll = () => {
       lenis.stop();
+      setIsTransitioning(true);
     };
 
     const startScroll = () => {
       lenis.start();
       lenis.scrollTo(0, { immediate: true });
+      setIsTransitioning(false);
     };
 
     route.events.on("routeChangeStart", stopScroll);
@@ -56,6 +59,7 @@ function MyApp({ Component, pageProps }) {
       lenis.destroy();
       route.events.off("routeChangeStart", stopScroll);
       route.events.off("routeChangeComplete", startScroll);
+      cancelAnimationFrame(raf);
     };
   }, [route.events]);
 
@@ -70,16 +74,17 @@ function MyApp({ Component, pageProps }) {
       )}
 
       <Header />
-      <LoaderContext.Provider
-        value={{
-          isLoading,
-          setIsLoading,
-        }}
-      >
-        <FlipContext.Provider value={{ flipState, setFlipState }}>
-          <Component {...pageProps} key={route.asPath} />
-        </FlipContext.Provider>
-      </LoaderContext.Provider>
+      {/* <PageTransition route={route.asPath} flipState={flipState}> */}
+      <Component
+        {...pageProps}
+        key={route.asPath}
+        flipState={flipState}
+        setFlipState={setFlipState}
+        isLoading={isLoading}
+        isTransitioning={isTransitioning}
+        setIsTransitioning={setIsTransitioning}
+      />
+      {/* </PageTransition> */}
     </>
   );
 }

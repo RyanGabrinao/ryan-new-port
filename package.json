@@ -15,7 +15,7 @@
     "@studio-freight/lenis": "^0.2.22",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
-    "framer-motion": "^7.6.9",
+    "framer-motion": "^7.6.12",
     "gsap": "^3.11.3",
     "lottie-react": "^2.3.1",
     "next": "13.0.4",
@@ -28,6 +28,7 @@
     "react-icons": "^4.6.0",
     "react-parallax-mouse": "^2.0.1",
     "react-responsive": "^9.0.0",
+    "react-transition-group": "^4.4.5",
     "split-type": "^0.3.3",
     "styled-components": "^5.3.6"
   },

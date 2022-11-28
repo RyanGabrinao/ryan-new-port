@@ -51,11 +51,11 @@ function ProjectHero({ project, flipState }) {
   return (
     <section
       id="project-hero-section"
-      className="relative flex flex-col justify-end h-[100vh] gap-[5vmin] break-words whitespace-normal overflow-hidden"
+      className="relative flex flex-col justify-end h-[100vh] gap-[5vmin] md:gap-[2vmin] whitespace-normal overflow-hidden"
       ref={component}
     >
       <h1
-        className="tracking-tight font-semibold leading-[0.8] text-step_5"
+        className="tracking-tight font-semibold leading-[0.8] text-step_2"
         id="project-title"
         text-split=""
       >

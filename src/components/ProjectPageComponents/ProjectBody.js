@@ -2,6 +2,7 @@ import React from "react";
 import { urlFor } from "../../../sanity";
 import { gsap } from "gsap/dist/gsap";
 import { useRef } from "react";
+import styled from "styled-components";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsoEffect";
 import Image from "next/image";
 
@@ -23,7 +24,7 @@ function ProjectBody({ project }) {
     return () => ctx.revert();
   }, []);
   return (
-    <section className="mt-[8vmin]" ref={component}>
+    <section className="mt-[8vmin] mb-[25vmin] px-2" ref={component}>
       <ul className="flex flex-wrap gap-2" id="project-tags">
         {project.tags.map((tag) => (
           <li
@@ -34,7 +35,7 @@ function ProjectBody({ project }) {
           </li>
         ))}
       </ul>
-      <article className="flex flex-col px-2 mt-20">
+      <article className="flex flex-col mt-20 md:grid md:grid-cols-2">
         <h2 className="mb-4 font-semibold leading-tight text-step2">
           Introduction
         </h2>
@@ -48,36 +49,64 @@ function ProjectBody({ project }) {
         </p>
       </article>
       <hr className="mx-2 my-14" />
-      <article className="grid grid-cols-2 px-2 mb-20 gap-y-8">
+      <article className="grid items-start grid-cols-2 mb-20 md:grid-cols-4 gap-y-8">
         <div>
           <h3 className="font-medium leading-tight text-step3">Client</h3>
-          <p className="font-extralight">Sample Client</p>
+          <p className="font-extralight">{project.client}</p>
         </div>
         <div>
           <h3 className="font-medium leading-tight text-step3">Year</h3>
-          <p className="font-extralight">Sample Client</p>
+          <p className="font-extralight">{project.year}</p>
         </div>
         <div>
           <h3 className="font-medium leading-tight text-step3">Tools</h3>
-          <p className="font-extralight">Sample Client</p>
+          <div className="flex flex-col">
+            {project.tools.map((tool) => (
+              <span>{tool}</span>
+            ))}
+          </div>
         </div>
-        <a
-          href=""
-          className="col-span-2 px-4 py-2 font-medium rounded-full bg-rg-white w-fit text-main-bg"
-        >
-          View Live Site
-        </a>
+        <div>
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block col-span-2 px-4 py-2 font-medium rounded-full bg-rg-white w-fit text-main-bg"
+          >
+            View Live Site
+          </a>
+        </div>
       </article>
-      <figure className="relative w-full overflow-hidden aspect-video">
-        <Image
-          src={urlFor(project.mainImage).url()}
-          alt="props"
-          fill
-          className="object-cover scale-150 parallax-img"
-        />
-      </figure>
+      <div className="gap-2 md:grid md:grid-cols-2 md:grid-rows-2">
+        <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video md:row-span-2">
+          <Image
+            src={urlFor(project.mainImage).url()}
+            alt="props"
+            fill
+            className="object-cover"
+          />
+        </figure>
+        <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
+          <Image
+            src={urlFor(project.galleryFullWidthDesktop).url()}
+            alt="props"
+            fill
+            className="object-cover"
+          />
+        </figure>
+        <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
+          <Image
+            src={urlFor(project.galleryFullWidthMobile).url()}
+            alt="props"
+            fill
+            className="object-cover"
+          />
+        </figure>
+      </div>
     </section>
   );
 }
 
 export default ProjectBody;
+
+const Grid = styled.div``;

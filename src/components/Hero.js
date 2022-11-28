@@ -14,9 +14,9 @@ function Hero({
   heroImage2,
   currentlyListening,
   currentlyWatching,
+  isLoading,
 }) {
   const component = useRef(null);
-  const { isLoading, setIsLoading } = useContext(LoaderContext);
   let tl = gsap.timeline({ paused: true });
 
   useIsomorphicLayoutEffect(() => {
