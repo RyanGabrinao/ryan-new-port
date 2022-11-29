@@ -12,13 +12,41 @@ import { Desktop } from "../utils/mediaQueries";
 
 gsap.registerPlugin(ScrollTrigger, Flip);
 
-export const LoaderContext = createContext();
+function debounce(fn, ms) {
+  let timer;
+  return (_) => {
+    clearTimeout(timer);
+    timer = setTimeout((_) => {
+      timer = null;
+      fn.apply(this, arguments);
+    }, ms);
+  };
+}
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [flipState, setFlipState] = useState();
+  const [dimensions, setDimensions] = useState({
+    height: 0,
+    width: 0,
+  });
   const route = useRouter();
+  useEffect(() => {
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+      window.location.reload(false);
+    }, 300);
+
+    window.addEventListener("resize", debouncedHandleResize);
+
+    return (_) => {
+      window.removeEventListener("resize", debouncedHandleResize);
+    };
+  }, [dimensions]);
 
   useEffect(() => {
     const lenis = new Lenis({

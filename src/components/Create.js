@@ -97,13 +97,14 @@ const Create = () => {
         <h2 className="font-bold leading-tight text-step_4 font-neuehaas">
           Let&apos;s Work
         </h2>
-        <p className="mt-12 mb-4 italic font-normal opacity-75 text-step6">
-          Fill the form below for an inquiry:
-        </p>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col font-normal text-step4"
         >
+          <p className="mt-12 mb-4 italic font-normal opacity-75 text-step6">
+            Fill the form below for an inquiry:
+          </p>
           <div className="lg:flex line-1">
             <span className="inline-block whitespace-nowrap">
               Hi! My name is
@@ -207,12 +208,12 @@ const Create = () => {
               {...register("client_product")}
             />
           </div>
-          <div className="mt-7">
+          <div className="flex justify-end mt-7">
             <button
               type="submit"
-              className="relative flex items-center justify-between py-3 pl-6 pr-6 leading-none uppercase bg-orange-900 rounded-full text-rg-white text-step5 group"
+              className="relative flex items-center justify-between px-6 py-3 leading-none uppercase bg-orange-900 rounded-full text-rg-white text-step5 group"
             >
-              <span className="inline-block mr-8">Submit</span>
+              <span className="inline-block mr-8 lg:text-base">Submit</span>
               <div
                 className="absolute w-2 h-2 origin-center bg-rg-white rounded-full scale-[1] right-4 group-hover:scale-[3] duration-200 ease-in-out"
                 aria-hidden={true}

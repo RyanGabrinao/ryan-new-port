@@ -7,10 +7,11 @@ import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";
 import { Flip } from "gsap/dist/Flip";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import { CSSTransition } from "react-transition-group";
 
 function Works({ projects, setFlipState }) {
   const component = useRef();
-  const router = useRouter();
 
   useEffect(() => {
     const state = Flip.getState(`.project-image`);
@@ -77,6 +78,7 @@ export default Works;
 
 const Project = ({ _id, title, path, src }) => {
   const [isHovered, setIsHovered] = useState();
+
   const handleOnEnter = () => {
     setIsHovered(true);
   };
