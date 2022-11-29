@@ -1,12 +1,10 @@
 "use client";
 import { useRef } from "react";
 import Head from "next/head";
-import About from "../src/components/About";
 import Hero from "../src/components/Hero";
 import { sanityClient } from "../sanity";
 import Works from "../src/components/Works";
 import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useIsomorphicLayoutEffect } from "../src/hooks/useIsoEffect";
 import Create from "../src/components/Create";
 

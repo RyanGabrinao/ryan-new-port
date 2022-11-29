@@ -1,4 +1,4 @@
-import React, { useEffect, createContext } from "react";
+import React, { useEffect } from "react";
 import { gsap } from "gsap/dist/gsap";
 import CustomEase from "gsap/dist/CustomEase";
 

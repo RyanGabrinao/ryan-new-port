@@ -1,16 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
-import { Flip } from "gsap/dist/Flip";
-import { urlFor } from "../../../sanity";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsoEffect";
 import { useMediaQuery } from "react-responsive";
 
 function ProjectLinks({ projects, setFlipState }) {
   return (
-    <section className="relative w-full px-2 mt-40">
-      <h2 className="font-bold leading-none tracking-tight mb-7 text-step2">
+    <section className="relative w-full px-2 mt-40 md:max-w-[1200px] mx-auto">
+      <h2 className="font-bold leading-none tracking-tight uppercase mb-7 text-step2">
         Other Projects
       </h2>
       <OtherProjects projects={projects} setFlipState={setFlipState} />
@@ -37,7 +34,7 @@ const OtherProjects = ({ projects, setFlipState }) => {
 
 const OtherProjectItem = ({ project, setFlipState, i }) => {
   const component = useRef();
-  const isDesktop = useMediaQuery({ minWidth: 992 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
   let tl = gsap.timeline({ paused: true });
   const hoverTween = useRef(null);
   const hoverTween2 = useRef(null);
@@ -46,7 +43,7 @@ const OtherProjectItem = ({ project, setFlipState, i }) => {
       let mm = gsap.matchMedia();
 
       mm.add(
-        "(min-width: 800px)",
+        "(min-width: 1023px)",
         () => {
           hoverTween.current = gsap.to("h2.real .char", {
             yPercent: -100,
@@ -99,11 +96,11 @@ const OtherProjectItem = ({ project, setFlipState, i }) => {
         onClick={handleClick}
         className="relative inline-block text-step2"
       >
-        <h2 className="font-medium leading-none uppercase real" text-split="">
+        <h2 className="font-medium leading-none real" text-split="">
           {project.title}
         </h2>
         <h2
-          className="absolute top-0 left-0 invisible italic font-bold leading-none tracking-wide uppercase notreal lg:visible font-gambetta whitespace-nowrap"
+          className="absolute top-0 left-0 invisible italic font-bold leading-none tracking-wide notreal lg:visible font-gambetta whitespace-nowrap"
           aria-hidden="true"
           text-split=""
         >

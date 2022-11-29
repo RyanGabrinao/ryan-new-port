@@ -3,24 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "../../sanity";
 import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";
-import { createScrollTrigger } from "../utility/gsap";
-import SplitType from "split-type";
-import { AnimatePresence, motion } from "framer-motion";
-import { useContext } from "react";
-import { FlipContext } from "../../pages/_app";
 import { Flip } from "gsap/dist/Flip";
 import { useEffect } from "react";
-import { Transition, CSSTransition } from "react-transition-group";
 import { useRouter } from "next/router";
 
-function Works({
-  projects,
-  setFlipState,
-  isTransitioning,
-  setIsTransitioning,
-}) {
+function Works({ projects, setFlipState }) {
   const component = useRef();
   const router = useRouter();
 
@@ -35,7 +23,7 @@ function Works({
         yPercent: 110,
         opacity: 0,
         pointerEvents: "none",
-        duration: 0.7,
+        duration: 1.1,
         ease: "power4.out",
         stagger: { each: 0.2 },
         scrollTrigger: {
@@ -48,7 +36,7 @@ function Works({
       gsap.from(".works-title", {
         opacity: 0,
         yPercent: 100,
-        duration: 0.7,
+        duration: 1.1,
         ease: "power4.inOut",
         scrollTrigger: {
           trigger: component.current,
@@ -62,10 +50,10 @@ function Works({
   return (
     <section
       ref={component}
-      className="mb-[45vmax] relative z-10 flex flex-col items-center"
+      className="mb-[30vmax] relative z-10 flex flex-col items-center"
       id="works-section"
     >
-      <h2 className="font-bold tracking-tight text-step_4 works-title mb-[0.5em]">
+      <h2 className="font-bold md:text-step_2 tracking-tight text-step_4 works-title mb-[0.5em] xl:text-step_1">
         Projects
       </h2>
 
@@ -87,7 +75,7 @@ function Works({
 
 export default Works;
 
-const Project = ({ _id, title, path, src, setFlipState }) => {
+const Project = ({ _id, title, path, src }) => {
   const [isHovered, setIsHovered] = useState();
   const handleOnEnter = () => {
     setIsHovered(true);

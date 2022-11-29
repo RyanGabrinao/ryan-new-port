@@ -1,5 +1,5 @@
 import "../styles/globals.scss";
-import { useState, useEffect, useCallback, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import Header from "../src/components/Header";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -9,8 +9,6 @@ import Lenis from "@studio-freight/lenis";
 import Loader from "../src/components/Loader";
 import Cursor from "../src/components/Cursor";
 import { Desktop } from "../utils/mediaQueries";
-import { AnimatePresence } from "framer-motion";
-import PageTransition from "../src/components/PageTransition";
 
 gsap.registerPlugin(ScrollTrigger, Flip);
 

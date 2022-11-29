@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { createScrollTrigger } from "../utility/gsap";
 import SplitType from "split-type";
 import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";

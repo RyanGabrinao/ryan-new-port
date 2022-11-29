@@ -24,22 +24,26 @@ function ProjectBody({ project }) {
     return () => ctx.revert();
   }, []);
   return (
-    <section className="mt-[8vmin] mb-[25vmin] px-2" ref={component}>
-      <ul className="flex flex-wrap gap-2" id="project-tags">
+    <section
+      className="mt-[8vmin] mb-[25vmin] px-2 md:max-w-[1200px] md:mx-auto"
+      ref={component}
+    >
+      <ul className="flex flex-wrap gap-2 xl:my-24" id="project-tags">
         {project.tags.map((tag) => (
           <li
             key={tag}
-            className="px-4 font-normal tracking-tight border rounded-full text-step2 w-fit"
+            className="px-4 font-normal tracking-tight border rounded-full text-step2 md:text-step4 w-fit"
           >
             <h4>{tag}</h4>
           </li>
         ))}
       </ul>
+
       <article className="flex flex-col mt-20 md:grid md:grid-cols-2">
-        <h2 className="mb-4 font-semibold leading-tight text-step2">
-          Introduction
+        <h2 className="mb-4 font-semibold leading-tight tracking-tight text-step2 md:text-step3">
+          Overview
         </h2>
-        <p className="tracking-wider font-extralight">
+        <p className=" font-extralight text-step5 md:text-step6">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere
           condimentum eleifend. Donec ligula nisl, congue vel tellus commodo,
           cursus sollicitudin arcu. Donec ligula elit, lobortis in dolor ac,
@@ -48,21 +52,33 @@ function ProjectBody({ project }) {
           dapibus dui nibh in neque
         </p>
       </article>
-      <hr className="mx-2 my-14" />
-      <article className="grid items-start grid-cols-2 mb-20 md:grid-cols-4 gap-y-8">
+
+      <hr className="mx-2 my-14 xl:my-32" />
+
+      <article className="grid items-start grid-cols-2 mb-20 md:grid-cols-4 gap-y-8 xl:mb-44">
         <div>
-          <h3 className="font-medium leading-tight text-step3">Client</h3>
-          <p className="font-extralight">{project.client}</p>
+          <h3 className="mb-1 font-semibold leading-tight tracking-tight md:mb-4 text-step3 md:text-step4">
+            Client
+          </h3>
+          <p className="font-extralight text-step5 md:text-step6">
+            {project.client}
+          </p>
         </div>
         <div>
-          <h3 className="font-medium leading-tight text-step3">Year</h3>
-          <p className="font-extralight">{project.year}</p>
+          <h3 className="mb-1 font-semibold leading-tight tracking-tight md:mb-4 text-step3 md:text-step4">
+            Year
+          </h3>
+          <p className="font-extralight text-step5 md:text-step6">
+            {project.year}
+          </p>
         </div>
         <div>
-          <h3 className="font-medium leading-tight text-step3">Tools</h3>
-          <div className="flex flex-col">
+          <h3 className="mb-1 font-semibold leading-tight tracking-tight md:mb-4 text-step3 md:text-step4">
+            Tools
+          </h3>
+          <div className="flex flex-col font-extralight text-step5 md:text-step6">
             {project.tools.map((tool) => (
-              <span>{tool}</span>
+              <span key={tool}>{tool}</span>
             ))}
           </div>
         </div>
@@ -71,19 +87,20 @@ function ProjectBody({ project }) {
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block col-span-2 px-4 py-2 font-medium rounded-full bg-rg-white w-fit text-main-bg"
+            className="inline-block col-span-2 px-4 py-2 font-medium rounded-full xl:py-4 xl:px-8 bg-rg-white w-fit text-main-bg"
           >
             View Live Site
           </a>
         </div>
       </article>
+
       <div className="gap-2 md:grid md:grid-cols-2 md:grid-rows-2">
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video md:row-span-2">
           <Image
             src={urlFor(project.mainImage).url()}
             alt="props"
             fill
-            className="object-cover"
+            className="object-cover parallax-img scale-[1.5]"
           />
         </figure>
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
@@ -91,7 +108,7 @@ function ProjectBody({ project }) {
             src={urlFor(project.galleryFullWidthDesktop).url()}
             alt="props"
             fill
-            className="object-cover"
+            className="object-cover parallax-img scale-[1.5]"
           />
         </figure>
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
@@ -99,7 +116,7 @@ function ProjectBody({ project }) {
             src={urlFor(project.galleryFullWidthMobile).url()}
             alt="props"
             fill
-            className="object-cover"
+            className="object-cover parallax-img scale-[1.5]"
           />
         </figure>
       </div>

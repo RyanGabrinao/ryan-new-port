@@ -1,19 +1,7 @@
-import { useState, useRef } from "react";
-import Image from "next/image";
 import { sanityClient } from "../../sanity";
-import { urlFor } from "../../sanity";
-import { useContext } from "react";
-import { FlipContext } from "../../pages/_app";
-import { Flip } from "gsap/dist/Flip";
-import { Desktop, Mobile } from "../../utils/mediaQueries";
-import Link from "next/link";
 import ProjectHero from "../../src/components/ProjectPageComponents/ProjectHero";
 import ProjectBody from "../../src/components/ProjectPageComponents/ProjectBody";
 import ProjectLinks from "../../src/components/ProjectPageComponents/ProjectLinks";
-import PageTransition from "../../src/components/PageTransition";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { useRouter } from "next/router";
-import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 
 function Project({
@@ -22,7 +10,6 @@ function Project({
   flipState,
   setFlipState,
   isTransitioning,
-  setIsTransitioning,
 }) {
   return (
     <AnimatePresence>

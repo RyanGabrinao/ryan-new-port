@@ -76,7 +76,7 @@ const Create = () => {
 
   return (
     <section
-      className="relative pt-[5rem] px-2 pb-12 mb-[5rem]"
+      className="relative px-2 lg:max-w-[75rem] h-screen lg:mx-auto flex flex-col justify-center items-center"
       ref={mainComponent}
       id="create-section"
     >
@@ -84,7 +84,7 @@ const Create = () => {
         className="fixed top-0 left-0 z-[5] flex w-full h-full"
         id="tile-container"
       >
-        {Array.from({ length: 10 }, (_, i) => {
+        {Array.from({ length: 20 }, (_, i) => {
           return (
             <div key={i} className="w-full h-screen bg-main-bg tile"></div>
           );
@@ -97,82 +97,116 @@ const Create = () => {
         <h2 className="font-bold leading-tight text-step_4 font-neuehaas">
           Let&apos;s Work
         </h2>
-        <p className="mt-12 mb-4 font-normal text-step6">
+        <p className="mt-12 mb-4 italic font-normal opacity-75 text-step6">
           Fill the form below for an inquiry:
         </p>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="font-normal text-step4"
+          className="flex flex-col font-normal text-step4"
         >
-          Hi! My name is
-          <input
-            type="text"
-            className="input__text"
-            placeholder="Enter your name*"
-            required
-            {...register("client_name", { required: true })}
-          />
-          and I work with
-          <input
-            type="text"
-            className="input__text"
-            placeholder="Company name type here"
-            {...register("client_company")}
-          />
-          I am looking for a partner to help me with
-          <input
-            type="text"
-            className="input__text"
-            placeholder="Your goal type here*"
-            required
-            {...register("client_goal", { required: true })}
-          />
-          With an idea of having that completed
-          <input
-            type="text"
-            className="input__text"
-            placeholder="Date"
-            onFocus={(e) => (e.target.type = "date")}
-            onBlur={(e) => (e.target.type = "text")}
-            {...register("client_end_date")}
-          />
-          I am hoping to stay around a budget range of
-          <select
-            className="input__text invalid:text-step5 invalid:normal-case invalid:font-normal invalid:text-neutral-400"
-            required
-            {...register("client_budget", { required: true })}
-          >
-            <option value="" disabled hidden>
-              Choose a budget*
-            </option>
-            <option value="Under 2k" className="option">
-              Under $2K
-            </option>
-            <option value="2k-5k" className="option">
-              $2K - $5K
-            </option>
-            <option value="5k-10k" className="option">
-              $5K - $10K
-            </option>
-            <option value="Over 10k" className="option">
-              Over $10K
-            </option>
-          </select>
-          You can reach me at
-          <input
-            type="email"
-            className="input__text"
-            placeholder="name@example.com*"
-            required
-            {...register("client_email", { required: true })}
-          />
-          to start the conversation. Optionally, I am sharing more:
-          <input
-            type="text"
-            className="input__text"
-            placeholder="Product details type here"
-            {...register("client_product")}
-          />
+          <div className="lg:flex line-1">
+            <span className="inline-block whitespace-nowrap">
+              Hi! My name is
+            </span>
+            <input
+              type="text"
+              className="lg:mx-4 input__text lg:placeholder:text-base"
+              placeholder="Enter your name*"
+              required
+              {...register("client_name", { required: true })}
+            />
+            <span className="inline-block whitespace-nowrap">
+              and I work with
+            </span>
+
+            <input
+              type="text"
+              className="input__text lg:mx-4 lg:placeholder:text-base"
+              placeholder="Company name type here"
+              {...register("client_company")}
+            />
+          </div>
+          <div className="line-2 lg:flex">
+            <span className="inline-block whitespace-nowrap">
+              I am looking for a partner to help me with
+            </span>
+
+            <input
+              type="text"
+              className="input__text lg:mx-4 lg:placeholder:text-base"
+              placeholder="Your goal type here*"
+              required
+              {...register("client_goal", { required: true })}
+            />
+          </div>
+          <div className="lg:flex line-3">
+            <span className="inline-block whitespace-nowrap">
+              With an idea of having that completed
+            </span>
+            <input
+              type="text"
+              className="input__text lg:mx-4 lg:placeholder:text-base"
+              placeholder="Date"
+              onFocus={(e) => (e.target.type = "date")}
+              onBlur={(e) => (e.target.type = "text")}
+              {...register("client_end_date")}
+            />
+          </div>
+          <div className="lg:flex line-4">
+            <span className="inline-block whitespace-nowrap">
+              I am hoping to stay around a budget range of
+            </span>
+            <select
+              className="input__text invalid:text-step5 invalid:normal-case invalid:font-normal invalid:text-neutral-400 lg:placeholder:text-base lg:mx-4"
+              required
+              {...register("client_budget", { required: true })}
+            >
+              <option value="" disabled hidden>
+                Choose a budget*
+              </option>
+              <option value="Under 2k" className="option">
+                Under $2K
+              </option>
+              <option value="2k-5k" className="option">
+                $2K - $5K
+              </option>
+              <option value="5k-10k" className="option">
+                $5K - $10K
+              </option>
+              <option value="Over 10k" className="option">
+                Over $10K
+              </option>
+            </select>
+          </div>
+          <div className="lg:flex line-5">
+            <span className="inline-block whitespace-nowrap">
+              You can reach me at
+            </span>
+            <input
+              type="email"
+              className="input__text lg:mx-4 lg:placeholder:text-base"
+              placeholder="name@example.com*"
+              required
+              {...register("client_email", { required: true })}
+            />
+            <span className="hidden lg:inline-block whitespace-nowrap">
+              to start the conversation.
+            </span>
+          </div>
+          <div className="lg:flex line-6">
+            {/* <span className="inline-block mr-1 lg:invisible">
+              to start the conversation.
+            </span> */}
+            <span className="inline-block whitespace-nowrap">
+              Optionally, I am sharing more:
+            </span>
+            <input
+              type="text"
+              className="input__text lg:mx-4 lg:placeholder:text-base"
+              placeholder="Product details type here"
+              {...register("client_product")}
+            />
+          </div>
           <div className="mt-7">
             <button
               type="submit"
@@ -192,3 +226,11 @@ const Create = () => {
 };
 
 export default Create;
+
+const Form = ({ children, handleSubmit }) => {
+  return <form onSubmit={handleSubmit}></form>;
+};
+
+const FormInput = ({ cn = "" }) => {
+  return <input className={`input__text ${cn}`} />;
+};

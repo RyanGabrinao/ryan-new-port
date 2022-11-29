@@ -34,7 +34,13 @@ function ProjectHero({ project, flipState }) {
         ease: "expo.inOut",
         onComplete: () => titletl.play(),
       });
+    }, component);
 
+    return () => ctx.revert();
+  }, [flipState]);
+
+  useIsomorphicLayoutEffect(() => {
+    let ctx = gsap.context(() => {
       gsap.to(".project-hero-image", {
         scale: 1.2,
         scrollTrigger: {
@@ -47,11 +53,12 @@ function ProjectHero({ project, flipState }) {
     }, component);
 
     return () => ctx.revert();
-  }, [flipState]);
+  }, []);
+
   return (
     <section
       id="project-hero-section"
-      className="relative flex flex-col justify-end h-[100vh] gap-[5vmin] md:gap-[2vmin] whitespace-normal overflow-hidden"
+      className="relative flex flex-col justify-end h-[100vh] lg:h-[120vh] xl:h-[175vh] lg:max-h-[120em] gap-[5vmin] md:gap-[2vmin] whitespace-normal overflow-hidden"
       ref={component}
     >
       <h1

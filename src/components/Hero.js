@@ -1,9 +1,7 @@
-import { useRef, useContext } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import { useIsomorphicLayoutEffect } from "../hooks/useIsoEffect";
-import { LoaderContext } from "../../pages/_app";
 import { urlFor } from "../../sanity.js";
 import Marquee from "react-fast-marquee";
 
@@ -27,10 +25,10 @@ function Hero({
         ease: "power2.inOut",
         duration: 0.7,
       })
-        .to(
+        .from(
           ".hero-image",
           {
-            scale: 1.6,
+            scale: 1.2,
             ease: "power2.inOut",
             duration: 0.7,
           },
@@ -66,15 +64,15 @@ function Hero({
         },
       });
 
-      gsap.to(".hero-image", {
-        yPercent: 15,
-        scrollTrigger: {
-          trigger: component.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      // gsap.to(".hero-image", {
+      //   scale: 1.2,
+      //   scrollTrigger: {
+      //     trigger: component.current,
+      //     start: "top top",
+      //     end: "bottom top",
+      //     scrub: 1,
+      //   },
+      // });
 
       if (isLoading) {
         tl.pause();
@@ -90,18 +88,18 @@ function Hero({
 
   return (
     <section
-      className="h-screen min-h-[500px] mb-[40vmax] overflow-hidden z-10"
+      className="h-screen min-h-[500px] mb-[30vmax] overflow-hidden z-10"
       id="hero-container"
       ref={component}
     >
       <div className="relative h-full pt-[5rem]" id="hero-container">
         <HeroImage
           src={urlFor(heroImage).url()}
-          containerCn="relative w-[45%] aspect-[3/4] overflow-hidden hero-image-container"
+          containerCn="relative xl:absolute xl:top-0 w-[45%] lg:w-[30%] md:aspect-[1/1] aspect-[3/4] overflow-hidden hero-image-container"
         />
         <HeroImage
           src={urlFor(heroImage2).url()}
-          containerCn="absolute bottom-[5%] right-0 w-[40%] aspect-[3/5] overflow-hidden hero-image-container"
+          containerCn="absolute xl:bottom-0 xl:aspect-square bottom-[5%] right-0 w-[40%] lg:w-[30%] aspect-[3/5] md:aspect-[2/3] overflow-hidden hero-image-container"
         />
         <HeroTitle title={title} subTitle={subTitle} />
         <CurrentlyWatching isLoading={isLoading} data={currentlyWatching} />
@@ -146,7 +144,7 @@ const HeroImage = ({ src, containerCn }) => {
         src={src}
         alt="Alt text for the picture"
         fill
-        className="object-cover scale-[2] hero-image"
+        className="object-cover hero-image"
       />
       <ImageOverlay />
     </div>
@@ -158,7 +156,7 @@ const CurrentlyWatching = ({ isLoading, data }) => {
     return (
       <li
         key={video._key}
-        className="ml-auto overflow-hidden font-thin tracking-wide truncate w-fit font-neuehaas hover:text-orange-400 text-step6"
+        className="mb-1 ml-auto overflow-hidden font-thin tracking-wide xl:text-sm w-fit font-neuehaas hover:text-orange-400 text-step6"
       >
         <a
           href={video.Link}
@@ -173,18 +171,18 @@ const CurrentlyWatching = ({ isLoading, data }) => {
   });
   return (
     <div
-      className="absolute top-[10%] right-1 max-w-[50%] text-right overflow-hidden"
+      className="absolute top-[10%] right-1 max-w-[50%] lg:max-w-[20%] text-right overflow-hidden"
       id="currently-container-1"
     >
-      <Marquee gradient={false} speed={30} direction="right">
-        <h4
-          className={`font-bold tracking-widest uppercase font-gambetta text-step4 leading-[1.1] mb-[0.6em] currently-title ${
-            isLoading ? "opacity-0" : ""
-          }`}
-        >
-          Currently Viewing
-        </h4>
-      </Marquee>
+      {/* <Marquee gradient={false} speed={30} direction="right"> */}
+      <h4
+        className={`font-bold xl:text-base tracking-widest uppercase font-gambetta text-step4 leading-[1.1] mb-[0.6em] currently-title ${
+          isLoading ? "opacity-0" : ""
+        }`}
+      >
+        Currently Viewing
+      </h4>
+      {/* </Marquee> */}
       <ol>{listCurrentlyWatching}</ol>
     </div>
   );
@@ -195,7 +193,7 @@ const CurrentlyListening = ({ isLoading, data }) => {
     return (
       <li
         key={song._key}
-        className="overflow-hidden font-thin tracking-wide w-fit font-neuehaas hover:text-purple-400 text-step6"
+        className="mb-1 overflow-hidden font-thin tracking-wide= xl:text-sm w-fit font-neuehaas hover:text-purple-400 text-step6"
       >
         <a
           href={song.Link}
@@ -210,18 +208,18 @@ const CurrentlyListening = ({ isLoading, data }) => {
   });
   return (
     <div
-      className="absolute bottom-[5%] left-1 max-w-[50%]"
+      className="absolute bottom-[5%] left-1 max-w-[50%] lg:max-w-[20%] overflow-hidden"
       id="currently-container-2"
     >
-      <Marquee gradient={false} speed={30}>
-        <h4
-          className={`font-bold tracking-widest uppercase font-gambetta text-step4 leading-[1.1] mb-[0.6em] currently-title ${
-            isLoading ? "opacity-0" : ""
-          }`}
-        >
-          Currently Listening
-        </h4>
-      </Marquee>
+      {/* <Marquee gradient={false} speed={30}> */}
+      <h4
+        className={`font-bold tracking-widest uppercase xl:text-base font-gambetta text-step4 leading-[1.1] mb-[0.6em] currently-title ${
+          isLoading ? "opacity-0" : ""
+        }`}
+      >
+        Currently Listening
+      </h4>
+      {/* </Marquee> */}
       <ol>{listCurrentlyListening}</ol>
     </div>
   );
