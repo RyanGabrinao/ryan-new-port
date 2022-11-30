@@ -22,10 +22,7 @@ function Header() {
         </div>
       </Link>
       <div className="font-migra text-step3">
-        <Link href="/" scroll={false}>
-          Home
-        </Link>
-        , About
+        <Link href="/">Home</Link>, <Link href="/about">About</Link>
       </div>
     </header>
   );
