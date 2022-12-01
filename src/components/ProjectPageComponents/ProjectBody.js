@@ -44,12 +44,7 @@ function ProjectBody({ project }) {
           Overview
         </h2>
         <p className=" font-extralight text-step5 md:text-step6">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere
-          condimentum eleifend. Donec ligula nisl, congue vel tellus commodo,
-          cursus sollicitudin arcu. Donec ligula elit, lobortis in dolor ac,
-          fringilla rutrum orci. Maecenas ornare scelerisque congue. Aliquam
-          feugiat, est at imperdiet posuere, risus enim aliquam libero, varius
-          dapibus dui nibh in neque
+          {project.introduction}
         </p>
       </article>
 
