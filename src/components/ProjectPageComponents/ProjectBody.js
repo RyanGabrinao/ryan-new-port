@@ -78,7 +78,7 @@ function ProjectBody({ project }) {
             src={urlFor(project.mainImage).url()}
             alt="props"
             fill
-            className="object-cover parallax-img scale-[1]"
+            className="object-cover object-top parallax-img scale-[1]"
           />
         </figure>
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
@@ -86,7 +86,7 @@ function ProjectBody({ project }) {
             src={urlFor(project.galleryFullWidthDesktop).url()}
             alt="props"
             fill
-            className="object-cover parallax-img scale-[1.5]"
+            className="object-cover object-top parallax-img"
           />
         </figure>
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
@@ -94,7 +94,7 @@ function ProjectBody({ project }) {
             src={urlFor(project.galleryFullWidthMobile).url()}
             alt="props"
             fill
-            className="object-cover parallax-img scale-[1.5]"
+            className="object-cover object-top parallax-img"
           />
         </figure>
       </div>
