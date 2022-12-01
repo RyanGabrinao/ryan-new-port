@@ -12,6 +12,7 @@
     "@emailjs/browser": "^3.9.1",
     "@portabletext/react": "^2.0.0",
     "@sanity/image-url": "^1.0.1",
+    "@sanity/webhook": "^2.0.0",
     "@studio-freight/lenis": "^0.2.22",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",

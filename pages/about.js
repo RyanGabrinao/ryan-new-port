@@ -23,6 +23,7 @@ function About({ siteSettings }) {
             src={urlFor(aboutImage).url()}
             fill
             className="object-cover object-bottom scale-125"
+            alt="prop"
           />
         </div>
 

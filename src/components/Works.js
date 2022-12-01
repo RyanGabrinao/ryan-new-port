@@ -16,7 +16,7 @@ function Works({ projects, setFlipState }) {
   useEffect(() => {
     const state = Flip.getState(`.project-image`);
     setFlipState(state);
-  }, []);
+  }, [setFlipState]);
 
   useIsomorphicLayoutEffect(() => {
     let ctx = gsap.context(() => {
