@@ -19,8 +19,8 @@ export default async function handler(req, res) {
     } = req;
 
     switch (type) {
-      case "post":
-        await res.revalidate(`/news/${slug}`);
+      case "projects":
+        await res.revalidate(`/case/${slug}`);
         return res.json({
           message: `Revalidated "${type}" with slug "${slug}"`,
         });
