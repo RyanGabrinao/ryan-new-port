@@ -15,7 +15,7 @@ const handler = async (req, res) => {
 
     //getting payload
     const { slug } = req.body;
-    await res.revalidate(`/case/`);
+    // await res.revalidate(`/case/`);
     await res.revalidate(`/case/${slug}`);
 
     res.status(200).json({ msg: "Product pages revalidated." });
