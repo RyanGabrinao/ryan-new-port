@@ -1,33 +1,26 @@
-import { isValidRequest } from "@sanity/webhook";
+import { SIGNATURE_HEADER_NAME, isValidSignature } from "@sanity/webhook";
 
-const secret = process.env.SANITY_WEBHOOK_SECRET;
-
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    console.error("Must be a POST request");
-    return res.status(401).json({ message: "Must be a POST request" });
-  }
-
-  if (!isValidRequest(req, secret)) {
-    res.status(401).json({ message: "Invalid signature" });
-    return;
-  }
-
+const handler = async (req, res) => {
+  //authenticating the webhook
   try {
-    const {
-      body: { type, slug },
-    } = req;
+    const signature = req.headers[SIGNATURE_HEADER_NAME].toString();
+    if (
+      !isValidSignature(
+        JSON.stringify(req.body),
+        signature,
+        process.env.SANITY_WEBHOOK_SECRET
+      )
+    )
+      return res.status(401).json({ msg: "Invalid request!" });
 
-    switch (type) {
-      case "projects":
-        await res.revalidate(`/case/${slug}`);
-        return res.json({
-          message: `Revalidated "${type}" with slug "${slug}"`,
-        });
-    }
+    //getting payload
+    const { slug } = req.body;
+    await res.revalidate(`/case/${slug}`);
 
-    return res.json({ message: "No managed type" });
-  } catch (err) {
-    return res.status(500).send({ message: "Error revalidating" });
+    res.status(200).json({ msg: "Product pages revalidated." });
+  } catch (error) {
+    res.status(500).json({ err: "Something went Wrong!" });
   }
-}
+};
+
+export default handler;
