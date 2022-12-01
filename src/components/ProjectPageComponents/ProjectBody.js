@@ -72,21 +72,13 @@ function ProjectBody({ project }) {
         </div>
       </article>
 
-      <div className="gap-2 md:grid md:grid-cols-2 md:grid-rows-2">
+      <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:grid-rows-2">
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video md:row-span-2">
-          <Image
-            src={urlFor(project.mainImage).url()}
-            alt="props"
-            fill
-            className="object-cover object-top parallax-img scale-[1]"
-          />
-        </figure>
-        <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
           <Image
             src={urlFor(project.galleryFullWidthDesktop).url()}
             alt="props"
             fill
-            className="object-cover object-top parallax-img"
+            className="object-cover object-center parallax-img scale-[1]"
           />
         </figure>
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
@@ -95,6 +87,14 @@ function ProjectBody({ project }) {
             alt="props"
             fill
             className="object-cover object-top parallax-img"
+          />
+        </figure>
+        <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
+          <Image
+            src={urlFor(project.tabletImage).url()}
+            alt="props"
+            fill
+            className="object-contain object-top parallax-img"
           />
         </figure>
       </div>

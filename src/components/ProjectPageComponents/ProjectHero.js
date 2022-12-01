@@ -77,7 +77,7 @@ function ProjectHero({ project, flipState }) {
           src={urlFor(project.mainImage).url()}
           alt="props"
           fill
-          className="object-cover object-top project-hero-image"
+          className="object-cover object-center project-hero-image"
         />
       </div>
     </section>
