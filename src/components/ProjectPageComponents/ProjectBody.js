@@ -1,28 +1,11 @@
 import React from "react";
 import { urlFor } from "../../../sanity";
-import { gsap } from "gsap/dist/gsap";
 import { useRef } from "react";
 import styled from "styled-components";
-import { useIsomorphicLayoutEffect } from "../../hooks/useIsoEffect";
 import Image from "next/image";
 
 function ProjectBody({ project }) {
   const component = useRef();
-  useIsomorphicLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.to(".parallax-img", {
-        yPercent: 30,
-        scrollTrigger: {
-          trigger: ".parallax-img",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, component);
-
-    return () => ctx.revert();
-  }, []);
   return (
     <section
       className="mt-[8vmin] mb-[25vmin] px-2 md:max-w-[1200px] md:mx-auto"
@@ -95,7 +78,7 @@ function ProjectBody({ project }) {
             src={urlFor(project.mainImage).url()}
             alt="props"
             fill
-            className="object-cover parallax-img scale-[1.5]"
+            className="object-cover parallax-img scale-[1]"
           />
         </figure>
         <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
