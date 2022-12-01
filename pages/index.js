@@ -7,6 +7,8 @@ import Works from "../src/components/Works";
 import { gsap } from "gsap/dist/gsap";
 import { useIsomorphicLayoutEffect } from "../src/hooks/useIsoEffect";
 import Create from "../src/components/Create";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export default function Home({
   siteSettings,
@@ -17,6 +19,7 @@ export default function Home({
   setIsTransitioning,
 }) {
   const mainComponent = useRef();
+  const [transToAbout, setTransToAbout] = useState(false);
   useIsomorphicLayoutEffect(() => {
     let tl = gsap.timeline({
       scrollTrigger: {

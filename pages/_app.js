@@ -32,21 +32,21 @@ function MyApp({ Component, pageProps }) {
     width: 0,
   });
   const route = useRouter();
-  useEffect(() => {
-    const debouncedHandleResize = debounce(function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-      window.location.reload(false);
-    }, 300);
+  // useEffect(() => {
+  //   const debouncedHandleResize = debounce(function handleResize() {
+  //     setDimensions({
+  //       height: window.innerHeight,
+  //       width: window.innerWidth,
+  //     });
+  //     window.location.reload(false);
+  //   }, 300);
 
-    window.addEventListener("resize", debouncedHandleResize);
+  //   window.addEventListener("resize", debouncedHandleResize);
 
-    return (_) => {
-      window.removeEventListener("resize", debouncedHandleResize);
-    };
-  }, [dimensions]);
+  //   return (_) => {
+  //     window.removeEventListener("resize", debouncedHandleResize);
+  //   };
+  // }, [dimensions]);
 
   useEffect(() => {
     const lenis = new Lenis({

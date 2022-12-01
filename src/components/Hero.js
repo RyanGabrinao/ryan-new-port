@@ -64,22 +64,10 @@ function Hero({
         },
       });
 
-      // gsap.to(".hero-image", {
-      //   scale: 1.2,
-      //   scrollTrigger: {
-      //     trigger: component.current,
-      //     start: "top top",
-      //     end: "bottom top",
-      //     scrub: 1,
-      //   },
-      // });
-
       if (isLoading) {
         tl.pause();
-        console.log("pause anim");
       } else {
         tl.play();
-        console.log("play anim");
       }
     }, component);
 

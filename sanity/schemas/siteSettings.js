@@ -96,5 +96,24 @@ export default {
       of: [{ type: "songs" }],
       validation: (Rule) => Rule.length(5),
     },
+    {
+      name: "aboutImage",
+      title: "About Image",
+      type: "image",
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description: "Important for SEO and accessiblity.",
+          options: {
+            isHighlighted: true,
+          },
+        },
+      ],
+      options: {
+        hotspot: true,
+      },
+    },
   ],
 };

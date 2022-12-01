@@ -1,15 +1,58 @@
+import Image from "next/image";
 import React from "react";
 import { BsInstagram, BsGithub, BsSpotify } from "react-icons/bs";
+import { sanityClient } from "../sanity";
+import { urlFor } from "../sanity";
+import { motion } from "framer-motion";
 
-function About() {
+function About({ siteSettings }) {
+  const { aboutImage } = siteSettings;
   return (
-    <main className="flex items-center justify-center w-full h-screen md:max-w-[85rem] mx-auto">
-      <section className="px-2">
-        <h1 className="font-bold tracking-tight text-heroName xl:text-step_1">
-          This page is currently under construction...
+    <motion.main
+      className="flex items-center justify-center w-full md:max-w-[65rem] mx-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <section className="relative px-2 mt-[81.3px] py-20">
+        <h1 className="mb-8 font-bold leading-none text-step_3 font-migra lg:text-step_5 whitespace-nowrap lg:absolute lg:opacity-[0.15] lg:top-[5%] lg:-left-[5rem] xl:-left-[25%] xl:-z-[5]">
+          Hi, I&apos;m Ryan
         </h1>
-        <p className="mb-4 tracking-tight opacity-60 text-step3 xl:text-step5">
-          In the meantime, go check my socials!
+        <div className="absolute w-[40%] aspect-[9/16] right-6 top-0 bottom-0 m-auto -z-[1] brightness-50 overflow-hidden">
+          <Image
+            src={urlFor(aboutImage).url()}
+            fill
+            className="object-cover object-bottom scale-125"
+          />
+        </div>
+
+        <p className="font-medium leading-[1.2] tracking-tight text-step1 lg:text-step1">
+          I&apos;m a developer / designer based in{" "}
+          <span className="from-[#3CA55C] to-[#B5AC49] bg-gradient-to-r bg-clip-text text-transparent">
+            Vancouver, B.C.
+          </span>{" "}
+          I specialize in creating interactive experiences and user-friendly
+          interfaces whilst maintaining semantic, clean markup, and SEO friendly
+          code.
+        </p>
+        <p className="font-medium leading-[1.2] tracking-tight text-step1 1 mt-[3rem] lg:text-step1">
+          When I&apos;m not designing, you can find me experimenting with
+          fashion, writing about my various thoughts, cooking for family and
+          friends, playing football or basketball, or creating a new Spotify
+          playlist.
+        </p>
+        <a
+          href="/files/resume.pdf"
+          alt="alt text"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="px-4 py-2 my-10 uppercase border rounded-full border-rg-white">
+            Download Resume
+          </button>
+        </a>
+        <p className="mt-8 mb-4 tracking-tight opacity-60 text-step3 xl:text-step6">
+          Go check my socials!
         </p>
         <div className="flex gap-4 xl:gap-8">
           <a
@@ -35,8 +78,25 @@ function About() {
           </a>
         </div>
       </section>
-    </main>
+    </motion.main>
   );
 }
 
 export default About;
+
+export const getStaticProps = async () => {
+  const query2 = `*[_type == "siteSettings"][0]`;
+  const siteSettings = await sanityClient.fetch(query2);
+
+  if (!siteSettings) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      siteSettings,
+    },
+  };
+};
