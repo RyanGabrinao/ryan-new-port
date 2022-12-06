@@ -12,10 +12,12 @@ function Project({
   setFlipState,
   isTransitioning,
 }) {
+  const title = project.title;
+  const metaTitle = `Ryan Gabrinao - ${title}`;
   return (
     <AnimatePresence>
       <Head>
-        <title>Ryan Gabrinao - {project.title}</title>
+        <title>{metaTitle}</title>
         <meta
           name="description"
           content={`Ryan Gabrinao. ${
