@@ -1,4 +1,5 @@
 import { sanityClient } from "../../sanity";
+import Head from "next/head";
 import ProjectHero from "../../src/components/ProjectPageComponents/ProjectHero";
 import ProjectBody from "../../src/components/ProjectPageComponents/ProjectBody";
 import ProjectLinks from "../../src/components/ProjectPageComponents/ProjectLinks";
@@ -13,6 +14,20 @@ function Project({
 }) {
   return (
     <AnimatePresence>
+      <Head>
+        <title>Ryan Gabrinao - {project.title}</title>
+        <meta
+          name="description"
+          content={`Ryan Gabrinao. ${
+            project.excerpt ? project.excerpt : "One of my projects."
+          }`}
+        />
+        <meta
+          name="keyword"
+          content="portfolio, javascript, react, typescript, ryan, gabrinao, freelance, bcit, ryangabrinao, front end developer, creative, developer"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {!isTransitioning && (
         <motion.main
           key={project._id}

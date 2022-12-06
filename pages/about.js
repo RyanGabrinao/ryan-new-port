@@ -4,6 +4,7 @@ import { BsInstagram, BsGithub, BsSpotify } from "react-icons/bs";
 import { sanityClient } from "../sanity";
 import { urlFor } from "../sanity";
 import { motion } from "framer-motion";
+import Head from "next/head";
 
 function About({ siteSettings }) {
   const { aboutImage } = siteSettings;
@@ -14,6 +15,18 @@ function About({ siteSettings }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      <Head>
+        <title>Ryan Gabrinao - About</title>
+        <meta
+          name="description"
+          content="Ryan Gabrinao. I am a graduate of BCIT's Front-End Web Developer program which gave me a broad overview of the current web technologies being used today."
+        />
+        <meta
+          name="keyword"
+          content="portfolio, javascript, react, typescript, ryan, gabrinao, freelance, bcit, ryangabrinao, front end developer, creative, developer"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <section className="relative px-2 mt-[81.3px] py-20">
         <h1 className="mb-8 font-bold leading-none text-step_3 font-migra lg:text-step_5 whitespace-nowrap lg:absolute lg:opacity-[0.15] lg:top-[5%] lg:-left-[5rem] xl:-left-[25%] xl:-z-[5]">
           Hi, I&apos;m Ryan

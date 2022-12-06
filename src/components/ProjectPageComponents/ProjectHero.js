@@ -28,9 +28,7 @@ function ProjectHero({ project, flipState }) {
 
       Flip.from(flipState, {
         targets: "#main-project-image-container",
-        // scale: true,
         duration: 1.4,
-        // absolute: true,
         ease: "expo.inOut",
         onComplete: () => titletl.play(),
       });

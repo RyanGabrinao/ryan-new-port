@@ -89,7 +89,7 @@ function ProjectBody({ project }) {
             className="object-cover object-top parallax-img"
           />
         </figure>
-        <figure className="relative w-full h-full overflow-hidden rounded-lg aspect-video">
+        <figure className="relative w-full h-full overflow-hidden rounded-lg -order-1 md:order-1 aspect-video">
           <Image
             src={urlFor(project.tabletImage).url()}
             alt="props"
