@@ -34,7 +34,7 @@ export default function Home({
   return (
     <main className="flex flex-col" ref={mainComponent}>
       <Head>
-        <title>Ryan Gabrinao - Home</title>
+        <title>Ryan Gabrinao - Front-End Developer</title>
         <meta
           name="description"
           content="Ryan Gabrinao. I am a graduate of BCIT's Front-End Web Developer program which gave me a broad overview of the current web technologies being used today."
